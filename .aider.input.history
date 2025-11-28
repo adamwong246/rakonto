@@ -8329,3 +8329,47 @@
 
 # 2025-11-28 09:11:52.409205
 +d
+
+# 2025-11-28 10:27:25.349516
++   ?   node bin/reactor.js start                                                                         ~/Code/reactor main
++ReferenceError: Cannot access 'manifest' before initialization
++    at startServer (file:///Users/adam/Code/reactor/bin/reactor.js:66:52)
+
+# 2025-11-28 10:27:29.864639
++y
+
+# 2025-11-28 10:29:05.827050
++d
+
+# 2025-11-28 10:29:42.345270
++you are making this way too complicated. Create the simplest implemenation possible. 
+
+# 2025-11-28 10:30:58.826147
++/ad package.json
+
+# 2025-11-28 10:31:36.082486
++create a dead simple esbuild dev server
+
+# 2025-11-28 10:32:10.516723
++y
+
+# 2025-11-28 10:33:07.155276
++/add public/ bin/ src/
+
+# 2025-11-28 10:33:22.603066
++procede 
+
+# 2025-11-28 10:33:55.284011
++y
+
+# 2025-11-28 10:34:06.601923
++create a dead simple esbuild dev server
+
+# 2025-11-28 10:34:21.389378
++y
+
+# 2025-11-28 10:34:46.629742
++/map refresh
+
+# 2025-11-28 10:35:19.809182
++create a dead simple esbuild dev server
