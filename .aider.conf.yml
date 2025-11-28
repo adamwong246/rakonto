@@ -1,0 +1,5 @@
+auto-commits: false
+
+model: deepseek
+api-key:
+ - deepseek=sk-44ac90c2cca746e2b152dd3f97cbf36c
