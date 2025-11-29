@@ -55,7 +55,10 @@ export function HorizontalNav({ activeTab, setActiveTab, onMyProfileClick }) {
                         fontSize: '14px',
                         transition: 'background-color 0.2s ease'
                     }}
-                    onClick={() => setActiveTab('search')}
+                    onClick={() => {
+                        console.log("Search tab clicked directly");
+                        setActiveTab('search');
+                    }}
                     onMouseEnter={(e) => {
                         if (activeTab !== 'search') {
                             e.target.style.backgroundColor = '#611f69';

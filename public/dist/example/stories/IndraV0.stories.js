@@ -3,7 +3,7 @@ import {
 } from "../../chunk-AUTHH52U.js";
 import {
   ChatWall
-} from "../../chunk-TPTBOFEC.js";
+} from "../../chunk-6S3AY6AP.js";
 import {
   BackendContext,
   Button_default,
@@ -15,7 +15,7 @@ import {
   Row_default,
   Tab_default,
   backend
-} from "../../chunk-66FK7IWA.js";
+} from "../../chunk-5ZPPOQ6L.js";
 import "../../chunk-65LQHSH5.js";
 import {
   __toESM,
@@ -26,7 +26,7 @@ import {
 // example/stories/IndraV0.stories.js
 var import_react7 = __toESM(require_react(), 1);
 
-// example/components/IndraV0.js
+// example/components/IndraV0.tsx
 var import_react6 = __toESM(require_react(), 1);
 
 // example/components/IndraV0/Sidebar.js
@@ -39,7 +39,10 @@ function Sidebar({ activeTab, setActiveTab }) {
       {
         eventKey: "popular",
         active: activeTab === "popular",
-        onClick: () => setActiveTab("popular"),
+        onClick: () => {
+          console.log("Popular tab clicked directly");
+          setActiveTab("popular");
+        },
         style: {
           color: "#FFD700",
           borderRadius: 0,
@@ -57,7 +60,10 @@ function Sidebar({ activeTab, setActiveTab }) {
       {
         eventKey: "feed",
         active: activeTab === "feed",
-        onClick: () => setActiveTab("feed"),
+        onClick: () => {
+          console.log("Feed tab clicked directly");
+          setActiveTab("feed");
+        },
         style: {
           color: "white",
           borderRadius: 0,
@@ -251,7 +257,10 @@ function HorizontalNav({ activeTab, setActiveTab, onMyProfileClick }) {
           fontSize: "14px",
           transition: "background-color 0.2s ease"
         },
-        onClick: () => setActiveTab("search"),
+        onClick: () => {
+          console.log("Search tab clicked directly");
+          setActiveTab("search");
+        },
         onMouseEnter: (e) => {
           if (activeTab !== "search") {
             e.target.style.backgroundColor = "#611f69";
@@ -666,7 +675,7 @@ function Settings() {
 
 // example/components/IndraV0/MainContent.js
 var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
-function MainContent({ activeTab, chatRooms, currentUser, profileUser, handleUserClick }) {
+function MainContent({ activeTab, chatRooms, currentUser, profileUser, focusedSubject, handleUserClick }) {
   return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { style: { padding: "20px", minHeight: "100%" }, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(Tab_default.Content, { children: [
     /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tab_default.Pane, { active: activeTab === "about", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(LandingPage, {}) }),
     /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tab_default.Pane, { active: activeTab === "profile", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
@@ -679,6 +688,19 @@ function MainContent({ activeTab, chatRooms, currentUser, profileUser, handleUse
         onUserClick: handleUserClick
       }
     ) }),
+    /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(Tab_default.Pane, { active: activeTab === "subject", children: [
+      console.log("MainContent rendering subject tab with focusedSubject:", focusedSubject),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+        ChatWall,
+        {
+          showInputForm: true,
+          context: "subject",
+          scrollDirection: "down",
+          onUserClick: handleUserClick,
+          focusedSubject
+        }
+      )
+    ] }),
     /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tab_default.Pane, { active: activeTab === "feed", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ChatWall, { showInputForm: true, context: "feed", scrollDirection: "down", onUserClick: handleUserClick }) }),
     /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tab_default.Pane, { active: activeTab === "recommendations", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ChatWall, { showInputForm: false, context: "recommendations", scrollDirection: "down", onUserClick: handleUserClick }) }),
     chatRooms.map((room) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Tab_default.Pane, { active: activeTab === room.id, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ChatWall, { showInputForm: true, context: "chat", scrollDirection: "down", room: room.id, onUserClick: handleUserClick }) }, room.id)),
@@ -698,7 +720,7 @@ function MainContent({ activeTab, chatRooms, currentUser, profileUser, handleUse
   ] }) });
 }
 
-// example/components/IndraV0.js
+// example/components/IndraV0.tsx
 var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
 function IndraV0() {
   const [activeTab, setActiveTab] = (0, import_react6.useState)("profile");
@@ -708,9 +730,40 @@ function IndraV0() {
   const [users, setUsers] = (0, import_react6.useState)([]);
   const [chatRooms, setChatRooms] = (0, import_react6.useState)([]);
   const scrollTimeoutRef = (0, import_react6.useRef)(null);
-  const handleUserClick = (user) => {
-    setProfileUser(user);
-    setActiveTab("profile");
+  const [focusedSubject, setFocusedSubject] = (0, import_react6.useState)(null);
+  const handleUserClick = async (item) => {
+    console.log("handleUserClick called with:", item);
+    console.log("Current focusedSubject before update:", focusedSubject);
+    console.log("Current activeTab before update:", activeTab);
+    if (item.type === "subject") {
+      console.log("Processing subject click");
+      if (item.subject) {
+        console.log("Using provided subject data:", item.subject);
+        setFocusedSubject(item.subject);
+        setActiveTab("subject");
+        console.log("Set focusedSubject to:", item.subject, "and activeTab to: subject");
+      } else {
+        try {
+          console.log("Fetching subject data for uid:", item.uid);
+          const subject = await backend2.getSubject(item.uid);
+          console.log("Fetched subject:", subject);
+          setFocusedSubject(subject);
+          setActiveTab("subject");
+          console.log("Set focusedSubject to:", subject, "and activeTab to: subject");
+        } catch (error) {
+          console.error("Error fetching subject:", error);
+          const fallbackSubject = { id: item.uid, name: item.name };
+          setFocusedSubject(fallbackSubject);
+          setActiveTab("subject");
+          console.log("Set focusedSubject to fallback:", fallbackSubject, "and activeTab to: subject");
+        }
+      }
+    } else {
+      console.log("Processing user profile click");
+      setProfileUser(item);
+      setActiveTab("profile");
+      console.log("Set profileUser to:", item, "and activeTab to: profile");
+    }
   };
   const handleMyProfileClick = () => {
     setProfileUser(null);
@@ -793,6 +846,7 @@ function IndraV0() {
                   chatRooms,
                   currentUser,
                   profileUser,
+                  focusedSubject,
                   handleUserClick
                 }
               ) })

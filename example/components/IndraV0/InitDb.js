@@ -2,32 +2,188 @@ import posts from "./Posts";
 
 export const InitDb = {
   users: [
-    { uid: "1", name: "Alice Johnson" },
-    { uid: "2", name: "Bob Smith" },
-    { uid: "3", name: "Carol Davis" },
-    { uid: "4", name: "David Wilson" },
-    { uid: "5", name: "Eva Brown" },
-    { uid: "6", name: "Frank Miller" },
-    { uid: "7", name: "Grace Lee" },
-    { uid: "8", name: "Henry Taylor" },
-    { uid: "9", name: "Ivy Chen" },
-    { uid: "10", name: "Jack Robinson" },
-    { uid: "11", name: "Katherine Moore" },
-    { uid: "12", name: "Liam Anderson" },
-    { uid: "13", name: "Mia Thompson" },
-    { uid: "14", name: "Noah Garcia" },
-    { uid: "15", name: "Olivia Martinez" },
-    { uid: "16", name: "Peter White" },
-    { uid: "17", name: "Quinn Harris" },
-    { uid: "18", name: "Rachel Clark" },
-    { uid: "19", name: "Samuel Lewis" },
-    { uid: "20", name: "Tina Walker" },
-    { uid: "21", name: "Uma Hall" },
-    { uid: "22", name: "Victor Young" },
-    { uid: "23", name: "Wendy King" },
-    { uid: "24", name: "Xavier Scott" },
-    { uid: "25", name: "Yvonne Green" },
-    { uid: "26", name: "Zachary Adams" },
+    { 
+      uid: "1", 
+      name: "Alice Johnson",
+      aboutMe: "UX/UI designer with a love for minimalist design. Coffee enthusiast and amateur photographer.",
+      sexAssignedAtBirth: "Female",
+      birthdate: "1992-05-15",
+      genderIdentityMan: 10,
+      genderIdentityWoman: 90,
+      anatomicalSexMale: 5,
+      anatomicalSexFemale: 95,
+      sexuallyAttractedToMen: 60,
+      sexuallyAttractedToWomen: 40,
+      romanticallyAttractedToMen: 70,
+      romanticallyAttractedToWomen: 30
+    },
+    { 
+      uid: "2", 
+      name: "Bob Smith",
+      aboutMe: "Data scientist exploring AI and machine learning. Chess player and science fiction fan.",
+      sexAssignedAtBirth: "Male",
+      birthdate: "1988-11-23",
+      genderIdentityMan: 95,
+      genderIdentityWoman: 5,
+      anatomicalSexMale: 95,
+      anatomicalSexFemale: 5,
+      sexuallyAttractedToMen: 0,
+      sexuallyAttractedToWomen: 100,
+      romanticallyAttractedToMen: 0,
+      romanticallyAttractedToWomen: 100
+    },
+    { 
+      uid: "3", 
+      name: "Carol Davis",
+      aboutMe: "Frontend developer specializing in React. Love traveling and trying new cuisines.",
+      sexAssignedAtBirth: "Female",
+      genderIdentityMan: 50,
+      genderIdentityWoman: 50,
+      anatomicalSexMale: 20,
+      anatomicalSexFemale: 80,
+      sexuallyAttractedToMen: 80,
+      sexuallyAttractedToWomen: 80,
+      romanticallyAttractedToMen: 80,
+      romanticallyAttractedToWomen: 80
+    },
+    { 
+      uid: "4", 
+      name: "David Wilson",
+      aboutMe: "Backend engineer building scalable systems. Marathon runner and guitar player.",
+      sexAssignedAtBirth: "Male"
+    },
+    { 
+      uid: "5", 
+      name: "Eva Brown",
+      aboutMe: "Product manager with a background in psychology. Passionate about user-centered design and team leadership.",
+      sexAssignedAtBirth: "Female"
+    },
+    { 
+      uid: "6", 
+      name: "Frank Miller",
+      aboutMe: "DevOps engineer automating everything. Home brewer and craft beer enthusiast.",
+      sexAssignedAtBirth: "Male"
+    },
+    { 
+      uid: "7", 
+      name: "Grace Lee",
+      aboutMe: "Mobile app developer creating iOS and Android apps. Yoga instructor and meditation practitioner.",
+      sexAssignedAtBirth: "Female"
+    },
+    { 
+      uid: "8", 
+      name: "Henry Taylor",
+      aboutMe: "Cybersecurity expert protecting digital assets. Rock climber and outdoor adventurer.",
+      sexAssignedAtBirth: "Male"
+    },
+    { 
+      uid: "9", 
+      name: "Ivy Chen",
+      aboutMe: "AI researcher working on natural language processing. Classical music lover and pianist.",
+      sexAssignedAtBirth: "Female"
+    },
+    { 
+      uid: "10", 
+      name: "Jack Robinson",
+      aboutMe: "Cloud architect designing distributed systems. Father of two and weekend woodworker.",
+      sexAssignedAtBirth: "Male"
+    },
+    { 
+      uid: "11", 
+      name: "Katherine Moore",
+      aboutMe: "Technical writer making complex topics accessible. Avid reader and aspiring novelist.",
+      sexAssignedAtBirth: "Female"
+    },
+    { 
+      uid: "12", 
+      name: "Liam Anderson",
+      aboutMe: "Game developer creating immersive experiences. Board game collector and tabletop RPG enthusiast.",
+      sexAssignedAtBirth: "Male"
+    },
+    { 
+      uid: "13", 
+      name: "Mia Thompson",
+      aboutMe: "Data analyst uncovering insights from data. Food blogger and cooking show addict.",
+      sexAssignedAtBirth: "Female"
+    },
+    { 
+      uid: "14", 
+      name: "Noah Garcia",
+      aboutMe: "Blockchain developer building decentralized applications. Cryptocurrency investor and futurist.",
+      sexAssignedAtBirth: "Male"
+    },
+    { 
+      uid: "15", 
+      name: "Olivia Martinez",
+      aboutMe: "Full-stack developer with a passion for open source. Volunteer teacher and community organizer.",
+      sexAssignedAtBirth: "Female"
+    },
+    { 
+      uid: "16", 
+      name: "Peter White",
+      aboutMe: "QA engineer ensuring software quality. Movie buff and amateur film critic.",
+      sexAssignedAtBirth: "Male"
+    },
+    { 
+      uid: "17", 
+      name: "Quinn Harris",
+      aboutMe: "Startup founder building the next big thing. Minimalist and productivity geek.",
+      sexAssignedAtBirth: "Prefer not to say"
+    },
+    { 
+      uid: "18", 
+      name: "Rachel Clark",
+      aboutMe: "Digital marketer driving growth strategies. Travel photographer and adventure seeker.",
+      sexAssignedAtBirth: "Female"
+    },
+    { 
+      uid: "19", 
+      name: "Samuel Lewis",
+      aboutMe: "Systems administrator keeping everything running. Home automation enthusiast and smart home builder.",
+      sexAssignedAtBirth: "Male"
+    },
+    { 
+      uid: "20", 
+      name: "Tina Walker",
+      aboutMe: "UI developer creating beautiful interfaces. Watercolor artist and gallery visitor.",
+      sexAssignedAtBirth: "Female"
+    },
+    { 
+      uid: "21", 
+      name: "Uma Hall",
+      aboutMe: "Machine learning engineer training models. Plant mom and urban gardener.",
+      sexAssignedAtBirth: "Intersex"
+    },
+    { 
+      uid: "22", 
+      name: "Victor Young",
+      aboutMe: "Database administrator optimizing queries. Sports fan and fantasy league commissioner.",
+      sexAssignedAtBirth: "Male"
+    },
+    { 
+      uid: "23", 
+      name: "Wendy King",
+      aboutMe: "Technical project manager delivering on time. Marathon runner and fitness coach.",
+      sexAssignedAtBirth: "Female"
+    },
+    { 
+      uid: "24", 
+      name: "Xavier Scott",
+      aboutMe: "Software consultant helping businesses scale. Public speaker and tech community leader.",
+      sexAssignedAtBirth: "Male"
+    },
+    { 
+      uid: "25", 
+      name: "Yvonne Green",
+      aboutMe: "Research scientist pushing boundaries. Science communicator and podcast host.",
+      sexAssignedAtBirth: "Female"
+    },
+    { 
+      uid: "26", 
+      name: "Zachary Adams",
+      aboutMe: "VR/AR developer creating immersive experiences. Sci-fi fan and space exploration enthusiast.",
+      sexAssignedAtBirth: "Male"
+    },
   ],
 
   relationships: [
@@ -127,169 +283,68 @@ export const InitDb = {
 
   posts: [
     ...posts,
-    // Add profile posts for all users
+  ],
+  
+  subjects: [
     {
-      id: "profile-post-1",
-      uid: "1",
-      text: "Just finished reading an amazing book about AI ethics! Highly recommend it to everyone interested in technology.",
-      timestamp: Date.now() - 86400000, // 1 day ago
-      type: "profile"
+      id: "subject-1",
+      name: "Hiking",
+      description: "The activity of going for long walks in the countryside for pleasure.",
+      createdAt: Date.now() - 86400000,
     },
     {
-      id: "profile-post-2",
-      uid: "1",
-      text: "Beautiful sunset today. Sometimes we need to pause and appreciate the simple things in life.",
-      timestamp: Date.now() - 172800000, // 2 days ago
-      type: "profile"
+      id: "subject-2",
+      name: "The Bible",
+      description: "The sacred scriptures of Christianity comprising the Old and New Testaments.",
+      createdAt: Date.now() - 172800000,
     },
     {
-      id: "profile-post-3",
-      uid: "2",
-      text: "Working on a new React project. The new features are really exciting!",
-      timestamp: Date.now() - 43200000, // 12 hours ago
-      type: "profile"
+      id: "subject-3",
+      name: "Pina Coladas and getting caught in the rain",
+      description: "A reference to the song 'Escape (The Piña Colada Song)' by Rupert Holmes.",
+      createdAt: Date.now() - 259200000,
     },
     {
-      id: "profile-post-4",
-      uid: "2",
-      text: "Just had the best coffee in town. If you're in the area, you have to try this place!",
-      timestamp: Date.now() - 129600000, // 1.5 days ago
-      type: "profile"
+      id: "subject-4",
+      name: "Artificial Intelligence",
+      description: "The theory and development of computer systems able to perform tasks normally requiring human intelligence.",
+      createdAt: Date.now() - 345600000,
     },
     {
-      id: "profile-post-5",
-      uid: "3",
-      text: "Learning a new programming language. It's challenging but rewarding!",
-      timestamp: Date.now() - 21600000, // 6 hours ago
-      type: "profile"
+      id: "subject-5",
+      name: "Minimalist Design",
+      description: "A design style that uses pared-down design elements.",
+      createdAt: Date.now() - 432000000,
     },
     {
-      id: "profile-post-6",
-      uid: "3",
-      text: "Weekend hiking trip was amazing. Nature always helps me recharge.",
-      timestamp: Date.now() - 86400000, // 1 day ago
-      type: "profile"
+      id: "subject-6",
+      name: "Coffee Culture",
+      description: "The social atmosphere that depends heavily upon coffee, particularly as a social lubricant.",
+      createdAt: Date.now() - 518400000,
     },
     {
-      id: "profile-post-7",
-      uid: "4",
-      text: "Just released a new version of my open source project. Check it out!",
-      timestamp: Date.now() - 7200000, // 2 hours ago
-      type: "profile"
+      id: "subject-7",
+      name: "React Development",
+      description: "Building user interfaces using the React JavaScript library.",
+      createdAt: Date.now() - 604800000,
     },
     {
-      id: "profile-post-8",
-      uid: "4",
-      text: "Thinking about the future of web development. So many exciting possibilities!",
-      timestamp: Date.now() - 86400000, // 1 day ago
-      type: "profile"
+      id: "subject-8",
+      name: "Travel Photography",
+      description: "The art of capturing images while traveling to different locations.",
+      createdAt: Date.now() - 691200000,
     },
     {
-      id: "profile-post-9",
-      uid: "5",
-      text: "Started a new painting today. The colors are coming together beautifully.",
-      timestamp: Date.now() - 3600000, // 1 hour ago
-      type: "profile"
+      id: "subject-9",
+      name: "Yoga and Meditation",
+      description: "Practices for physical, mental, and spiritual well-being.",
+      createdAt: Date.now() - 777600000,
     },
     {
-      id: "profile-post-10",
-      uid: "5",
-      text: "Visited the art museum yesterday. So much inspiration!",
-      timestamp: Date.now() - 172800000, // 2 days ago
-      type: "profile"
+      id: "subject-10",
+      name: "Sustainable Living",
+      description: "A lifestyle that attempts to reduce an individual's or society's use of the Earth's natural resources.",
+      createdAt: Date.now() - 864000000,
     },
-    // Add 50 more profile posts from various users
-    ...Array.from({ length: 50 }, (_, i) => ({
-      id: `profile-post-extra-${i + 11}`,
-      uid: `${(i % 26) + 1}`, // Distribute across users 1-26
-      text: `Profile post content ${i + 1} from user ${(i % 26) + 1}. This is sample content to populate the feed.`,
-      timestamp: Date.now() - (i * 3600000), // Stagger timestamps
-      type: "profile"
-    })),
-    // Add feed posts
-    ...Array.from({ length: 30 }, (_, i) => ({
-      id: `feed-post-${i + 1}`,
-      uid: `${(i % 26) + 1}`,
-      text: `Feed post ${i + 1}: Sharing something interesting with my followers!`,
-      timestamp: Date.now() - (i * 1800000), // Stagger timestamps
-      type: "feed"
-    })),
-    // Add popular posts
-    ...Array.from({ length: 20 }, (_, i) => ({
-      id: `popular-post-${i + 1}`,
-      uid: `${(i % 26) + 1}`,
-      text: `Popular post ${i + 1}: This is trending right now!`,
-      timestamp: Date.now() - (i * 3600000),
-      type: "popular"
-    })),
-    // Add notification posts
-    ...Array.from({ length: 15 }, (_, i) => ({
-      id: `notification-${i + 1}`,
-      uid: "system",
-      text: `Notification ${i + 1}: You have a new message or update.`,
-      timestamp: Date.now() - (i * 7200000),
-      type: "notification",
-      subtype: i % 5 === 0 ? 'like' : 
-               i % 5 === 1 ? 'follow' : 
-               i % 5 === 2 ? 'comment' : 
-               i % 5 === 3 ? 'mention' : 'trending'
-    })),
-    // Add messages for Team Discussion (private-group)
-    {
-      id: "team-discussion-1",
-      uid: "1",
-      text: "Hey team, let's discuss the project timeline",
-      timestamp: Date.now() - 3600000,
-      type: "chat",
-      room: "private-group-1"
-    },
-    {
-      id: "team-discussion-2",
-      uid: "0",
-      text: "I think we can finish by next Friday",
-      timestamp: Date.now() - 1800000,
-      type: "chat",
-      room: "private-group-1"
-    },
-    {
-      id: "team-discussion-3",
-      uid: "2",
-      text: "Sounds good. I'll have my part ready by Wednesday",
-      timestamp: Date.now() - 600000,
-      type: "chat",
-      room: "private-group-1"
-    },
-    // Add more chat messages for various rooms
-    ...Array.from({ length: 20 }, (_, i) => ({
-      id: `chat-message-${i + 1}`,
-      uid: `${(i % 26) + 1}`,
-      text: `Chat message ${i + 1} in the conversation.`,
-      timestamp: Date.now() - (i * 300000),
-      type: "chat",
-      room: i % 3 === 0 ? "public-group-1" : 
-            i % 3 === 1 ? "public-group-2" : "public-group-3"
-    })),
-    // Add profile posts for current user
-    {
-      id: "profile-post-current-1",
-      uid: "0",
-      text: "Welcome to my profile! I'm excited to connect with everyone on this platform.",
-      timestamp: Date.now() - 3600000, // 1 hour ago
-      type: "profile"
-    },
-    {
-      id: "profile-post-current-2",
-      uid: "0",
-      text: "Working on some exciting new features for our project. Can't wait to share more soon!",
-      timestamp: Date.now() - 86400000, // 1 day ago
-      type: "profile"
-    },
-    {
-      id: "profile-post-current-3",
-      uid: "0",
-      text: "Just finished a great workout. Staying active is important for both body and mind.",
-      timestamp: Date.now() - 172800000, // 2 days ago
-      type: "profile"
-    }
   ],
 };

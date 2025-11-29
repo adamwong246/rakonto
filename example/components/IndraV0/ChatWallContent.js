@@ -11,6 +11,7 @@ export function ChatWallContent({
     onReply, 
     onUserClick 
 }) {
+    console.log("ChatWallContent rendering with onUserClick:", onUserClick);
     if (isLoading) {
         return <div style={{ textAlign: 'center', padding: '20px' }}>Loading...</div>;
     }

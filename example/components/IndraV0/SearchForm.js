@@ -8,19 +8,31 @@ export function SearchForm({ onSearch, context }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (query.trim()) {
-      // Get current user to filter out blocked users
-      const currentUser = await backend.getCurrentUser();
-      const results = await backend.searchUsers(query, currentUser.uid);
-      onSearch(results);
-    }
+    // Always perform search, even with empty query
+    // Get current user to filter out blocked users
+    const currentUser = await backend.getCurrentUser();
+    // Search for users, posts, and subjects
+    const [userResults, postResults, subjectResults] = await Promise.all([
+      backend.searchUsers(query, currentUser.uid),
+      backend.searchPosts(query),
+      backend.searchSubjects(query)
+    ]);
+    
+    // Combine all results
+    const allResults = [
+      ...userResults.map(user => ({ type: 'user', data: user })),
+      ...postResults.map(post => ({ type: 'post', data: post })),
+      ...subjectResults.map(subject => ({ type: 'subject', data: subject }))
+    ];
+    
+    onSearch(allResults);
   };
 
   const getPlaceholder = () => {
     if (context === 'friends') {
       return "Search for friends...";
     } else if (context === 'search') {
-      return "Search for posts, users, or topics...";
+      return "Search users, posts, and subjects...";
     } else {
       return "Search...";
     }

@@ -4,7 +4,7 @@ import { ChatWall } from './ChatWall.js';
 import { Settings } from './Settings.js';
 import { LandingPage } from './LandingPage.js';
 
-export function MainContent({ activeTab, chatRooms, currentUser, profileUser, handleUserClick }) {
+export function MainContent({ activeTab, chatRooms, currentUser, profileUser, focusedSubject, handleUserClick }) {
     return (
         <div style={{ padding: '20px', minHeight: '100%' }}>
             <Tab.Content>
@@ -18,6 +18,17 @@ export function MainContent({ activeTab, chatRooms, currentUser, profileUser, ha
                         scrollDirection="down" 
                         profileUser={profileUser || currentUser}
                         onUserClick={handleUserClick}
+                    />
+                </Tab.Pane>
+                
+                <Tab.Pane active={activeTab === 'subject'}>
+                    {console.log("MainContent rendering subject tab with focusedSubject:", focusedSubject)}
+                    <ChatWall 
+                        showInputForm={true} 
+                        context="subject" 
+                        scrollDirection="down" 
+                        onUserClick={handleUserClick}
+                        focusedSubject={focusedSubject}
                     />
                 </Tab.Pane>
                 

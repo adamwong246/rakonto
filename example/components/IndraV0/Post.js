@@ -234,6 +234,38 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
     }
   };
 
+  // Handle subject click
+  const handleSubjectClick = () => {
+    console.log("handleSubjectClick called with post:", post);
+    if (onUserClick && post.subject) {
+      console.log("Calling onUserClick with subject:", post.subject);
+      onUserClick({ 
+        name: post.subject.name, 
+        uid: post.subject.id, 
+        type: 'subject',
+        subject: post.subject // Pass the full subject data
+      });
+    } else {
+      console.log("onUserClick not available or post.subject missing");
+    }
+  };
+
+  // Handle reply to subject
+  const handleReplyToSubject = () => {
+    console.log("handleReplyToSubject called with post:", post);
+    if (onUserClick && post.subject) {
+      console.log("Calling onUserClick with subject:", post.subject);
+      onUserClick({ 
+        name: post.subject.name, 
+        uid: post.subject.id, 
+        type: 'subject',
+        subject: post.subject // Pass the full subject data
+      });
+    } else {
+      console.log("onUserClick not available or post.subject missing");
+    }
+  };
+
   return (
     <div style={getPostStyle()}>
       {/* Reply button */}
@@ -435,6 +467,109 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
               marginTop: '10px'
             }}>
               {renderRelationshipActions()}
+            </div>
+          </div>
+        </>
+      ) : context === 'search' ? (
+        // Special rendering for search results
+        <>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "5px",
+            }}
+          >
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                borderRadius: "50%",
+                backgroundColor: "#4A154B",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "white",
+                marginRight: "10px",
+                fontSize: "14px",
+                fontWeight: "bold",
+                cursor: (onUserClick && post.uid) || (onUserClick && post.type === 'search-subject') ? 'pointer' : 'default'
+              }}
+              onClick={post.type === 'search-subject' ? handleSubjectClick : handleUserNameClick}
+            >
+              {post.type === 'search-user' ? '👤' : 
+               post.type === 'search-subject' ? '📚' : '📝'}
+            </div>
+            <div>
+              <strong 
+                style={{ 
+                  cursor: (onUserClick && post.uid) || (onUserClick && post.type === 'search-subject') ? 'pointer' : 'default',
+                  textDecoration: (onUserClick && post.uid) || (onUserClick && post.type === 'search-subject') ? 'underline' : 'none'
+                }}
+                onClick={post.type === 'search-subject' ? handleSubjectClick : handleUserNameClick}
+              >
+                {post.user}
+              </strong>
+              <div style={{ fontSize: "12px", color: "#666" }}>{post.time}</div>
+            </div>
+          </div>
+          <div style={{ marginLeft: "42px" }}>
+            {post.content}
+            <div style={{ 
+              marginTop: '10px'
+            }}>
+              {post.type === 'search-user' && (
+                <button 
+                  onClick={() => {
+                    if (onUserClick) {
+                      onUserClick({ name: post.user, uid: post.uid });
+                    }
+                  }}
+                  style={{ 
+                    marginRight: '5px', 
+                    fontSize: '12px', 
+                    padding: '5px 10px',
+                    backgroundColor: '#4A154B',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  View Profile
+                </button>
+              )}
+              {post.type === 'search-subject' && (
+                <button 
+                  onClick={handleSubjectClick}
+                  style={{ 
+                    fontSize: '12px', 
+                    padding: '5px 10px',
+                    backgroundColor: '#4A154B',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  View Subject
+                </button>
+              )}
+              {post.type === 'search-post' && (
+                <button 
+                  onClick={handleReply}
+                  style={{ 
+                    fontSize: '12px', 
+                    padding: '5px 10px',
+                    backgroundColor: 'transparent',
+                    border: '1px solid #ddd',
+                    borderRadius: '4px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Reply
+                </button>
+              )}
             </div>
           </div>
         </>

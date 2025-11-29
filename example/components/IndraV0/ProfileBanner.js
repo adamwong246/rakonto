@@ -1,10 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { BackendContext } from './Backend.js';
 import { UserMetricsModal } from './UserMetricsModal.js';
+import { RelationshipModal } from './RelationshipModal.js';
+import { AboutModal } from './AboutModal.js';
 
 export function ProfileBanner({ user }) {
     const backend = useContext(BackendContext);
     const [showMetricsModal, setShowMetricsModal] = useState(false);
+    const [showRelationshipModal, setShowRelationshipModal] = useState(false);
+    const [showAboutModal, setShowAboutModal] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
     const [relationship, setRelationship] = useState('none');
     
@@ -15,12 +19,12 @@ export function ProfileBanner({ user }) {
     React.useEffect(() => {
         const fetchCurrentUserAndRelationship = async () => {
             try {
-                const user = await backend.getCurrentUser();
-                setCurrentUser(user);
+                const currentUserData = await backend.getCurrentUser();
+                setCurrentUser(currentUserData);
                 
                 // Fetch relationship if viewing another user's profile
-                if (user && user.uid !== user.uid) {
-                    const rel = await backend.getRelationship(user.uid, user.uid);
+                if (currentUserData && user && currentUserData.uid !== user.uid) {
+                    const rel = await backend.getRelationship(currentUserData.uid, user.uid);
                     setRelationship(rel);
                 }
             } catch (error) {
@@ -51,191 +55,28 @@ export function ProfileBanner({ user }) {
         setShowMetricsModal(true);
     };
 
-    const handleRelationshipAction = async (action) => {
-        try {
-            await backend.updateRelationship(currentUser.uid, user.uid, action);
-            // Refresh relationship status
-            const newRel = await backend.getRelationship(currentUser.uid, user.uid);
-            setRelationship(newRel);
-        } catch (error) {
-            console.error('Error updating relationship:', error);
-        }
+    const handleRelationshipClick = () => {
+        setShowRelationshipModal(true);
     };
 
-    const renderRelationshipControls = () => {
-        if (!currentUser || !user || currentUser.uid === user.uid) return null;
-        
-        const buttonStyle = {
-            padding: '8px 16px',
-            margin: '0 5px',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            color: 'white',
-            fontWeight: 'bold',
-            fontSize: '14px',
-            transition: 'background-color 0.2s ease',
-            backgroundColor: 'rgba(255, 255, 255, 0.2)'
-        };
+    const handleAboutClick = () => {
+        setShowAboutModal(true);
+    };
 
-        const hoverStyle = {
-            backgroundColor: 'rgba(255, 255, 255, 0.3)'
-        };
-
-        // Check individual relationship components
-        const fromFollowsTo = relationship === 'following' || relationship === 'friends';
-        const toFollowsFrom = relationship === 'followed-by' || relationship === 'friends';
-        const fromBlocksTo = relationship === 'blocked';
-        const toBlocksFrom = relationship === 'blocked-by';
-
-        // If current user is blocked by the target user, show limited options
-        if (toBlocksFrom) {
-            return (
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span style={{ 
-                        padding: '8px 16px',
-                        color: 'white',
-                        fontSize: '14px'
-                    }}>
-                        This user has blocked you
-                    </span>
-                </div>
-            );
-        }
-
-        // If current user has blocked the target user
-        if (fromBlocksTo) {
-            return (
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span style={{ 
-                        padding: '8px 16px',
-                        color: 'white',
-                        fontSize: '14px'
-                    }}>
-                        Blocked
-                    </span>
-                    <button 
-                        onClick={() => handleRelationshipAction('unblock')}
-                        style={buttonStyle}
-                        onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
-                        onMouseLeave={(e) => Object.assign(e.target.style, { backgroundColor: 'rgba(255, 255, 255, 0.2)' })}
-                    >
-                        Unblock
-                    </button>
-                </div>
-            );
-        }
-
-        // Normal relationship controls when no blocking is involved
-        if (fromFollowsTo && toFollowsFrom) {
-            // Friends
-            return (
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span style={{ 
-                        padding: '8px 16px',
-                        color: 'white',
-                        fontSize: '14px'
-                    }}>
-                        Friends
-                    </span>
-                    <button 
-                        onClick={() => handleRelationshipAction('unfollow')}
-                        style={buttonStyle}
-                        onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
-                        onMouseLeave={(e) => Object.assign(e.target.style, { backgroundColor: 'rgba(255, 255, 255, 0.2)' })}
-                    >
-                        Unfriend
-                    </button>
-                    <button 
-                        onClick={() => handleRelationshipAction('block')}
-                        style={buttonStyle}
-                        onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
-                        onMouseLeave={(e) => Object.assign(e.target.style, { backgroundColor: 'rgba(255, 255, 255, 0.2)' })}
-                    >
-                        Block
-                    </button>
-                </div>
-            );
-        } else if (fromFollowsTo) {
-            // Following
-            return (
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span style={{ 
-                        padding: '8px 16px',
-                        color: 'white',
-                        fontSize: '14px'
-                    }}>
-                        Following
-                    </span>
-                    <button 
-                        onClick={() => handleRelationshipAction('unfollow')}
-                        style={buttonStyle}
-                        onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
-                        onMouseLeave={(e) => Object.assign(e.target.style, { backgroundColor: 'rgba(255, 255, 255, 0.2)' })}
-                    >
-                        Unfollow
-                    </button>
-                    <button 
-                        onClick={() => handleRelationshipAction('block')}
-                        style={buttonStyle}
-                        onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
-                        onMouseLeave={(e) => Object.assign(e.target.style, { backgroundColor: 'rgba(255, 255, 255, 0.2)' })}
-                    >
-                        Block
-                    </button>
-                </div>
-            );
-        } else if (toFollowsFrom) {
-            // Followed by
-            return (
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <span style={{ 
-                        padding: '8px 16px',
-                        color: 'white',
-                        fontSize: '14px'
-                    }}>
-                        Follows you
-                    </span>
-                    <button 
-                        onClick={() => handleRelationshipAction('follow')}
-                        style={buttonStyle}
-                        onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
-                        onMouseLeave={(e) => Object.assign(e.target.style, { backgroundColor: 'rgba(255, 255, 255, 0.2)' })}
-                    >
-                        Follow back
-                    </button>
-                    <button 
-                        onClick={() => handleRelationshipAction('block')}
-                        style={buttonStyle}
-                        onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
-                        onMouseLeave={(e) => Object.assign(e.target.style, { backgroundColor: 'rgba(255, 255, 255, 0.2)' })}
-                    >
-                        Block
-                    </button>
-                </div>
-            );
-        } else {
-            // No relationship
-            return (
-                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <button 
-                        onClick={() => handleRelationshipAction('follow')}
-                        style={buttonStyle}
-                        onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
-                        onMouseLeave={(e) => Object.assign(e.target.style, { backgroundColor: 'rgba(255, 255, 255, 0.2)' })}
-                    >
-                        Follow
-                    </button>
-                    <button 
-                        onClick={() => handleRelationshipAction('block')}
-                        style={buttonStyle}
-                        onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
-                        onMouseLeave={(e) => Object.assign(e.target.style, { backgroundColor: 'rgba(255, 255, 255, 0.2)' })}
-                    >
-                        Block
-                    </button>
-                </div>
-            );
+    const getRelationshipSummary = () => {
+        switch (relationship) {
+            case 'friends':
+                return 'Friends';
+            case 'following':
+                return 'Following';
+            case 'followed-by':
+                return 'Follows you';
+            case 'blocked':
+                return 'Blocked';
+            case 'blocked-by':
+                return 'Blocked by user';
+            default:
+                return 'Not connected';
         }
     };
 
@@ -262,19 +103,79 @@ export function ProfileBanner({ user }) {
                     justifyContent: 'center',
                     fontSize: '36px',
                     fontWeight: 'bold',
-                    border: '4px solid rgba(255, 255, 255, 0.3)'
-                }}>
+                    border: '4px solid rgba(255, 255, 255, 0.3)',
+                    cursor: 'pointer'
+                }}
+                onClick={handleAboutClick}>
                     {initials}
                 </div>
                 <div style={{ flex: 1 }}>
                     <h2 style={{ margin: 0, fontWeight: 'bold' }}>{displayName}</h2>
-                    <p style={{ margin: '5px 0 0 0', opacity: 0.9 }}>
-                        {user?.bio || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
+                    <p style={{ margin: '5px 0 0 0', opacity: 0.9, cursor: 'pointer' }}
+                       onClick={handleAboutClick}>
+                        {user?.aboutMe || user?.bio || 'This user hasn\'t written an about me yet.'}
                     </p>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-end' }}>
-                    {/* Relationship Controls */}
-                    {renderRelationshipControls()}
+                    {/* Relationship Summary and Button */}
+                    {currentUser && user && currentUser.uid !== user.uid && (
+                        <>
+                            <div style={{ 
+                                padding: '8px 16px',
+                                color: 'white',
+                                fontSize: '14px',
+                                textAlign: 'center'
+                            }}>
+                                Status: <strong>{getRelationshipSummary()}</strong>
+                            </div>
+                            <button 
+                                onClick={handleRelationshipClick}
+                                style={{
+                                    padding: '10px 20px',
+                                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                                    borderRadius: '20px',
+                                    cursor: 'pointer',
+                                    color: 'white',
+                                    fontWeight: 'bold',
+                                    fontSize: '14px',
+                                    transition: 'background-color 0.2s ease'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                                }}
+                            >
+                                Manage Relationship
+                            </button>
+                        </>
+                    )}
+                    
+                    {/* About Button - Show for all users including own profile */}
+                    <button 
+                        onClick={handleAboutClick}
+                        style={{
+                            padding: '10px 20px',
+                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                            border: '1px solid rgba(255, 255, 255, 0.3)',
+                            borderRadius: '20px',
+                            cursor: 'pointer',
+                            color: 'white',
+                            fontWeight: 'bold',
+                            fontSize: '14px',
+                            transition: 'background-color 0.2s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                        }}
+                    >
+                        View About
+                    </button>
                     
                     {/* Verify Button - Only show if user is not viewing their own profile */}
                     {currentUser && user && currentUser.uid !== user.uid && (
@@ -310,6 +211,21 @@ export function ProfileBanner({ user }) {
                 onHide={() => setShowMetricsModal(false)}
                 targetUser={user}
                 currentUser={currentUser}
+            />
+            
+            {/* Relationship Modal */}
+            <RelationshipModal 
+                show={showRelationshipModal}
+                onHide={() => setShowRelationshipModal(false)}
+                targetUser={user}
+                currentUser={currentUser}
+            />
+            
+            {/* About Modal */}
+            <AboutModal 
+                show={showAboutModal}
+                onHide={() => setShowAboutModal(false)}
+                user={user}
             />
         </>
     );

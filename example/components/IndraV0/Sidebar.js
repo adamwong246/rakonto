@@ -9,7 +9,10 @@ export function Sidebar({ activeTab, setActiveTab }) {
         <Nav.Link
           eventKey="popular"
           active={activeTab === "popular"}
-          onClick={() => setActiveTab("popular")}
+          onClick={() => {
+            console.log("Popular tab clicked directly");
+            setActiveTab("popular");
+          }}
           style={{
             color: "#FFD700",
             borderRadius: 0,
@@ -28,7 +31,10 @@ export function Sidebar({ activeTab, setActiveTab }) {
         <Nav.Link
           eventKey="feed"
           active={activeTab === "feed"}
-          onClick={() => setActiveTab("feed")}
+          onClick={() => {
+            console.log("Feed tab clicked directly");
+            setActiveTab("feed");
+          }}
           style={{
             color: "white",
             borderRadius: 0,
