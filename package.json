@@ -1,9 +1,9 @@
 {
-  "name": "reactor",
+  "name": "rakonto",
   "version": "0.0.1",
   "type": "module",
   "main": "index.js",
-  "author": "adam wong <adamwong246@gmail.com>",
+  "author": "adamwong246@gmail.com",
   "license": "MIT",
   "dependencies": {
     "@emotion/react": "^11.14.0",
