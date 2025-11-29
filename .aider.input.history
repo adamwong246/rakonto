@@ -8556,3 +8556,78 @@
 
 # 2025-11-28 14:41:31.512808
 +n
+
+# 2025-11-28 14:54:59.486361
++IndraV0 is going to be a slack clone. There should be a thinner left column of tabs and alrger right column with content. Use react-bootstrap o achieve. Use lorem ipsum for filler 
+
+# 2025-11-28 14:59:01.122895
++add a dummy input form at the button- text input with a submit button
+
+# 2025-11-28 15:03:45.161243
++lets change the channels. we need 1) Profile 2) Feed 3) Recommendations 4) several chat rooms, some with 2 participants and some with more than 2 particiapns 
+
+# 2025-11-28 15:07:37.230176
++we don't need to distinguis betweeb direct messages and group messages. Make 1 chat with Alice, one chat with Bob, and third chat with both alice and bob. no need to name the conversations
+
+# 2025-11-28 15:10:07.206126
++all tabs , when clicked, should show a chat thread. The profile will only show a users public posts. The feed will show posts from friends. `Recommendations` should show recommende posts. 
+
+# 2025-11-28 15:12:33.341666
++actually, recommendations does not need an input form but it should retain the chat-like interface otherwise 
+
+# 2025-11-28 15:14:06.117011
++breakup indrav0 into smaller files 
+
+# 2025-11-28 15:17:18.555589
++y
+
+# 2025-11-28 15:17:32.938058
++/clear 
+
+# 2025-11-28 15:18:33.799254
++we need to make a new component for `IndraV0`. Call is "ChatWall". For now, it should just show a list of lorem ipsum. create a story to go with this components 
+
+# 2025-11-28 15:19:13.180509
++y
+
+# 2025-11-28 15:20:02.990592
++create the story for ChatWall
+
+# 2025-11-28 15:20:36.195609
++y
+
+# 2025-11-28 15:24:16.935504
++create more stories, all of which show the ChatWall component. 1) ProfileChatWall 2) FeedChatWall 3) RecomendationsChatWall 4) ThreadChatWall . add these to the .storyboardrc.js 
+
+# 2025-11-28 15:24:51.405279
++y
+
+# 2025-11-28 15:26:23.629871
++remove the styling from these 4 stories so that they are all identical. 
+
+# 2025-11-28 15:29:11.269595
++now we need to add some props to ChatWall so that it can be customized. 1) a prop to show or hide the input form 2) a prop to make the content
+
+# 2025-11-28 15:30:12.233201
++now we need to add some props to ChatWall so that it can be customized. 1) a prop to show or hide the input form 2) a prop to make the content a flat list vs a chat thread
+
+# 2025-11-28 15:32:44.767833
++y
+
+# 2025-11-28 15:35:42.121117
++now we are going to update the stories to use different props for ChatWall. Profile shows a flat list with an input form. Feed shows a chat-thread non-flat list, with input form. Recommendations is a flat list without an input form
+
+# 2025-11-28 15:38:29.705377
++ThreadChatWall and FeedChatWall should render the list as a chat, with user's post to the right, and everything else to the left. Stelal the styling from ChatTab
+
+# 2025-11-28 15:40:29.712793
++update indrav0 to use these ChatWall Implmentations, then dispose of the older implmentation
+
+# 2025-11-28 15:44:59.305829
++n
+
+# 2025-11-28 15:45:23.896349
++update 3 bob and alice chats to use ChatWall aka ThreadChatWall
+
+# 2025-11-28 15:51:04.256733
++the profile should show a flat list of the the users posts. The feed should show all posts from tge user on the right, and all other posts on the left. The chat with Alice and Bob should be similar to the Feed 

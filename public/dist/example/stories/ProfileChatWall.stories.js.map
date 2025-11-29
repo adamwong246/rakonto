@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../example/stories/ProfileChatWall.stories.js"],
+  "sourcesContent": ["import React from 'react';\nimport { ChatWall } from '../components/IndraV0/ChatWall.js';\n\nexport default function ProfileChatWallStory() {\n    return (\n        <div>\n            <ChatWall showInputForm={true} isFlatList={true} />\n        </div>\n    );\n}\n"],
+  "mappings": ";;;;;;;;;;;AAAA,mBAAkB;AAMN;AAHG,SAAR,uBAAwC;AAC3C,SACI,4CAAC,SACG,sDAAC,YAAS,eAAe,MAAM,YAAY,MAAM,GACrD;AAER;",
+  "names": []
+}

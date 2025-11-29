@@ -6,10 +6,10 @@
   "author": "adam wong <adamwong246@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@chakra-ui/react": "^3.30.0",
     "@emotion/react": "^11.14.0",
     "esbuild": "^0.27.0",
     "react": "^19.2.0",
+    "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.0",
     "tsx": "^4.20.6"
   },
