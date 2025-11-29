@@ -3,18 +3,15 @@ import { Form, Button, InputGroup } from 'react-bootstrap';
 
 export function InputForm({ activeTab, message, setMessage, handleSubmit }) {
     const getPlaceholder = () => {
-        switch (activeTab) {
-            case 'profile': return 'Add a public post...';
-            case 'feed': return 'Post to your feed...';
-            case 'alice': return 'Message Alice...';
-            case 'bob': return 'Message Bob...';
-            case 'alice-bob': return 'Message Alice & Bob...';
-            default: return 'Type your message...';
-        }
+        if (activeTab === 'profile') return 'Add a public post...';
+        if (activeTab === 'feed') return 'Post to your feed...';
+        if (activeTab.startsWith('user-')) return 'Type your message...';
+        if (activeTab === 'group-chat') return 'Message the group...';
+        return 'Type your message...';
     };
 
     const getButtonText = () => {
-        return ['alice', 'bob', 'alice-bob'].includes(activeTab) ? 'Send' : 'Post';
+        return (activeTab.startsWith('user-') || activeTab === 'group-chat') ? 'Send' : 'Post';
     };
 
     return (

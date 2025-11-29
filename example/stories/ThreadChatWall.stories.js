@@ -4,7 +4,7 @@ import { ChatWall } from '../components/IndraV0/ChatWall.js';
 export default function ThreadChatWallStory() {
     return (
         <div>
-            <ChatWall showInputForm={true} isFlatList={false} />
+            <ChatWall showInputForm={true} context="chat" scrollDirection="up" />
         </div>
     );
 }

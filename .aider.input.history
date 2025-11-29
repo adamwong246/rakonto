@@ -8631,3 +8631,516 @@
 
 # 2025-11-28 15:51:04.256733
 +the profile should show a flat list of the the users posts. The feed should show all posts from tge user on the right, and all other posts on the left. The chat with Alice and Bob should be similar to the Feed 
+
+# 2025-11-28 17:03:20.914679
++we need to add a prop to ChatWall that will allow up-scrolling and down-scrolling. Down-scrolling put the newest posts at the top of the list and up-scrolling put oldest posts at the top of the list. Chat threads are up-scrolling. Profile, feed and recommendations are down-scrolling
+
+# 2025-11-28 17:05:19.394311
++down-scrolling chatWalls should put the input form at the top. Up-scrolling chatWalls should have the form at the b ottom
+
+# 2025-11-28 17:06:45.896115
++break up chatWall into smaller files 
+
+# 2025-11-28 17:09:01.262393
++y
+
+# 2025-11-28 17:11:40.794053
++the profile tab should have a lorem ipsum profile banner, with users name and profile pic. Use placeholders for now 
+
+# 2025-11-28 17:12:47.101481
++move this to it's own components and make a story to accompany 
+
+# 2025-11-28 17:14:01.594669
++y
+
+# 2025-11-28 17:15:10.239092
++only the profile tab should show the profile banner
+
+# 2025-11-28 17:17:20.456611
++n
+
+# 2025-11-28 17:17:41.474108
++✘ [ERROR] Unexpected closing "Tab.Content" tag does not match opening "Tab.Pane" tag
++
++    example/components/IndraV0.js:38:26:
++      38 │                         </Tab.Content>
++         │                           ~~~~~~~~~~~
++         ╵                           Tab.Pane
++
++  The opening "Tab.Pane" tag is here:
++
++    example/components/IndraV0.js:30:29:
++      30 │                             <Tab.Pane active={activeTab === 'recom...
++         ╵                              ~~~~~~~~
++
++✘ [ERROR] Unexpected closing "div" tag does not match opening "Tab.Content" tag
++
++    example/components/IndraV0.js:39:22:
++      39 │                     </div>
++         │                       ~~~
++         ╵                       Tab.Content
++
+
+# 2025-11-28 17:18:45.309639
++only the profile tab should show the profile banner. no other tab ought to show the user-banner 
+
+# 2025-11-28 17:19:38.987637
++Nope, it is still there
+
+# 2025-11-28 17:21:23.058586
++/clear 
+
+# 2025-11-28 17:25:42.547634
++add a new tab, with a component and story. It should be called "popular". Down-scrolling, without input form
+
+# 2025-11-28 17:26:54.341618
++y
+
+# 2025-11-28 17:28:23.998994
++add a new tab, with a component and story. It should be called "search". Down-scrolling, with a search form, not input form, downscrolling 
+
+# 2025-11-28 17:30:10.015440
++y
+
+# 2025-11-28 17:32:36.185090
++add a new tab, with a component and story. It should be called "friends". Down-scrolling, with a search form, not input form, downscrolling 
+
+# 2025-11-28 17:34:35.854429
++y
+
+# 2025-11-28 17:38:16.644815
++fill in the friends tab with lorem ipsum friends
+
+# 2025-11-28 17:42:15.500884
++add a new tab, with a component and story. It should be called "notifications". Down-scrolling, with no form
+
+# 2025-11-28 17:44:13.454234
++y
+
+# 2025-11-28 18:02:08.353834
++./drop
+
+# 2025-11-28 18:02:11.741164
++/drop
+
+# 2025-11-28 18:02:25.998202
++/add package.json example/components/
+
+# 2025-11-28 18:04:47.641221
++we are going to create a fake backend for this react app. It should live in example/stories/IndraV0.stories.js . lets start with a list of users, each with a name and uid
+
+# 2025-11-28 18:05:09.692484
++we are going to create a fake backend for this react app. It should live in example/stories/IndraV0.stories.js . lets start with a list of users, each with a name and uid. 
+
+# 2025-11-28 18:05:11.004287
++y
+
+# 2025-11-28 18:07:53.708067
++✘ [ERROR] Could not resolve "../../stories/IndraV0.stories.js"
++
++    example/components/IndraV0.js:5:31:
++      5 │ import { BackendContext } from '../../stories/IndraV0.stories.js';
++        ╵                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# 2025-11-28 18:09:37.346420
++y
+
+# 2025-11-28 18:10:18.903788
++remove all the hardcoded users, and rely upobn the fake backend 
+
+# 2025-11-28 18:12:31.229172
++✘ [ERROR] The symbol "posts" has already been declared
++
++    example/components/IndraV0/usePosts.js:232:9:
++      232 │   const [posts, setPosts] = useState(() => {
++          ╵          ~~~~~
++
++  The symbol "posts" was originally declared here:
++
++    example/components/IndraV0/usePosts.js:6:9:
++      6 │   const [posts, setPosts] = useState([]);
++        ╵          ~~~~~
++
++✘ [ERROR] The symbol "setPosts" has already been declared
++
++    example/components/IndraV0/usePosts.js:232:16:
++      232 │   const [posts, setPosts] = useState(() => {
++          ╵                 ~~~~~~~~
++
++  The symbol "setPosts" was originally declared here:
++
++    example/components/IndraV0/usePosts.js:6:16:
++      6 │   const [posts, setPosts] = useState([]);
++        ╵                 ~~~~~~~~
+
+# 2025-11-28 18:14:49.399449
++bob, alice and charlie are still hardcoded. 
+
+# 2025-11-28 18:18:41.448385
++"alice" and "bob" are still hardcoded all over the place. the components should not reference any specific ysers, just those in the fake db
+
+# 2025-11-28 18:20:34.713325
++n
+
+# 2025-11-28 18:23:11.797832
++now we are gong to implement relations between users. 2 users should be able to do the following: 1) "friends" (both users follow each other) 2) one user follows the other 3) vice-versa of 2 4) 1 user blocks another 5) vice-versa of 4 6) no relation
+
+# 2025-11-28 18:23:16.842004
++/clear 
+
+# 2025-11-28 18:23:18.322607
++now we are gong to implement relations between users. 2 users should be able to do the following: 1) "friends" (both users follow each other) 2) one user follows the other 3) vice-versa of 2 4) 1 user blocks another 5) vice-versa of 4 6) no relation
+
+# 2025-11-28 18:26:51.518780
++Add some tabs 1) "blocked" users who you have blocked 2) "following" users you are following and 3) "neighbors" users who are near to you. the "neighbors tab" can just have a blank page for now
+
+# 2025-11-28 18:30:25.727801
++continue removing hadcoded references to alice and bob, and making the components depend on the backend, if it can be done. if not, let me know
+
+# 2025-11-28 18:35:24.597633
++lets upgrade the backend with posts. Each post belongs to a user and has a text field .
+
+# 2025-11-28 18:37:29.790618
++lets upgrade the backend with posts. Each post belongs to a user and has a text field .  Posts encompass both items on your profile, recommendations, the feed, notifications, and messages within private chats. though they are presented differently in the frontend, all these elements should come the Posts endpoint
+
+# 2025-11-28 18:41:44.217558
++the usePosts hook needs to pull from the database, without hardcoded contetn
+
+# 2025-11-28 19:50:58.500593
++the search tab should show a flat listm down-scrolling with a search field at the top. Pick a better emoji for "recomendations" tab
+
+# 2025-11-28 19:52:03.158966
++the search tab should show a flat list, not a chat threat style list,  down-scrolling with a search field at the top. 
+
+# 2025-11-28 19:54:37.601931
++/clear 
+
+# 2025-11-28 19:57:35.892582
++we need 1) private 1 to 1 chats 2) private group chats 3) public group chats. Each chat thread has a name 
+
+# 2025-11-28 20:05:35.491237
++/add example/components/IndraV0/InitDb.js 
+
+# 2025-11-28 20:08:04.671378
++✘ [ERROR] No matching export in "example/components/IndraV0/InitDb.js" for import "relationships"
++
++    example/components/IndraV0/Backend.js:4:2:
++      4 │   relationships, chatRooms, posts, users
++        ╵   ~~~~~~~~~~~~~
++
++✘ [ERROR] No matching export in "example/components/IndraV0/InitDb.js" for import "chatRooms"
++
++    example/components/IndraV0/Backend.js:4:17:
++      4 │   relationships, chatRooms, posts, users
++        ╵                  ~~~~~~~~~
++
++✘ [ERROR] No matching export in "example/components/IndraV0/InitDb.js" for import "posts"
++
++    example/components/IndraV0/Backend.js:4:28:
++      4 │   relationships, chatRooms, posts, users
++        ╵                             ~~~~~
++
++✘ [ERROR] No matching export in "example/components/IndraV0/InitDb.js" for import "users"
++
++    example/components/IndraV0/Backend.js:4:35:
++      4 │   relationships, chatRooms, posts, users
+
+# 2025-11-28 20:14:23.579171
++/clear 
+
+# 2025-11-28 20:14:34.455596
++/drop example/components/Button.js example/components/Header.js 
+
+# 2025-11-28 20:17:48.652889
++we are going to extend the Posts model. it needs a "likability" score (0-100). There should be a small button on every Post that launches a modal window to display the likability score 
+
+# 2025-11-28 20:19:38.993391
++y
+
+# 2025-11-28 20:25:11.260390
++we need to distinguish between Posts, which have a likability score, from notifications, blocks, follows which do not have a likability score. Im open to extending the POsts model or creating a new model. let me know which you thnk is better 
+
+# 2025-11-28 20:27:46.202444
++1) fill in the Team Discussion and General Discussion with some messages. Private messages and message groups do not have a likability score, but public comments do
+
+# 2025-11-28 20:31:29.225879
++we need to update the fake DB model. Each post can have several likability scores, 1 from each user. A user cannot make more than 1 likability score for a post.
+
+# 2025-11-28 20:34:08.737126
++/clear 
+
+# 2025-11-28 20:35:32.424203
++we need to consider how to model nested Posts. A post can have many other posts aka comments, and each can have more comments stil. It should able to handle any depth of a tree of comments. Consider the DB model, and the UI/UX
+
+# 2025-11-28 20:39:51.223914
++formattedPosts is not defined
+
+# 2025-11-28 20:48:22.324739
++n
+
+# 2025-11-28 20:57:03.970592
++we need a better UI/UX than this. I don't want to make the ChatWall's form model. Instead, when you click reply on a post, it should open that post at the top of the screen, similar to the user-profile-banner. The comments for that post should be listed as normal below that post-banner. Click reply on those comments repeats the process, zooming in on the subject and displaying the comments below
+
+# 2025-11-28 21:02:06.215615
++move the likability button off the post preview and move it to the post-banner, such that you must press "reply" to access the likability button
+
+# 2025-11-28 21:04:56.446815
++we need to add several other metrics 1) fact vs fiction 2) human vs ai 3) truthful vs deceiptful
+
+# 2025-11-28 21:11:06.554482
++the recommendations tab should show a mixture of people you might now, public group chats, and posts. For now, just show all the user with who your ARE not friends, all public group chats and all posts.
+
+# 2025-11-28 21:14:30.902396
++/clear 
+
+# 2025-11-28 21:14:31.939562
++✘ [ERROR] The symbol "followedUids" has already been declared
++
++    example/components/IndraV0/Backend.js:182:18:
++      182 │             const followedUids = this.relationships
++          ╵                   ~~~~~~~~~~~~
++
++  The symbol "followedUids" was originally declared here:
++
++    example/components/IndraV0/Backend.js:169:18:
++      169 │             const followedUids = this.relationships
+
+# 2025-11-28 21:19:36.278091
++clicking a users name should take you to their wall/profile (with user-banner)
+
+# 2025-11-28 21:22:03.659179
++/clear 
+
+# 2025-11-28 21:22:11.109978
++break up ChatWall.js into smaller files 
+
+# 2025-11-28 21:22:24.506544
++break up ChatWall.js into smaller files  . ✘ [ERROR] The symbol "followedUids" has already been declared
++
++    example/components/IndraV0/Backend.js:182:18:
++      182 │             const followedUids = this.relationships
+
+# 2025-11-28 21:25:07.945360
++y
+
+# 2025-11-28 21:27:33.918299
++add another post metric- adultness. 0 for children, 100 for adults. also, make a "report" button alongside the metrics 
+
+# 2025-11-28 21:30:14.497041
++breakup the `LikabilityModal` into smaller file s
+
+# 2025-11-28 21:33:29.682952
++y
+
+# 2025-11-28 21:36:45.466300
++update the layout to be a 3 column layout. The left side bar should have the "fixed" tabs and the right sidebar should have chats and discussion
+
+# 2025-11-28 21:39:28.835681
++remove the chats and discussions from the left sidebar. remove the popular discussions from the right 
+
+# 2025-11-28 21:42:38.817329
++style the right sidebar to match the left. The items should ordered 1) active chats and discussion 2) online friends 3) offline friends 
+
+# 2025-11-28 21:44:58.332236
++clicking the links in the right sidebar should open the appropriate conversation
+
+# 2025-11-28 21:47:00.731488
++/clear 
+
+# 2025-11-28 21:47:52.347301
++within a post, clicking a users name should take you to their profile 
+
+# 2025-11-28 21:53:53.345174
++create a third nav element, horizontal rather than the vertical left and right sidebars. It should go across the top central column
+
+# 2025-11-28 21:53:58.119140
++create a third nav element, horizontal rather than the vertical left and right sidebars. It should go across the top of the central column
+
+# 2025-11-28 21:56:16.619252
++the top nav should have 1) profile 2) search 3) recommendations. the left bar should NOT have those 3 nav elements 
+
+# 2025-11-28 21:58:14.059980
++swap recommendations and notifications
+
+# 2025-11-28 21:59:38.192640
++I want the notifications as the last element of the top sidebar. Recoomendations should go in the left sidebar 
+
+# 2025-11-28 22:01:23.393170
++make 
+
+# 2025-11-28 22:01:57.134308
++make "popular" the first nav item in the left sidebar, but rename it's label to "Indra" with no emoji
+
+# 2025-11-28 22:03:33.856407
++style the Indra link distinctively from the other items, as it leads back to the "frontpage" of the app, showing the most popular content. put an HR between recommendations and Friends. Make Blocked the last item in the left sidebar 
+
+# 2025-11-28 22:04:50.097512
++break up Indrav0 into smaller files 
+
+# 2025-11-28 22:12:36.813641
++y
+
+# 2025-11-28 22:13:08.769057
++in the left side bar under blocked, put an HR and then the stub for a login/logout button
+
+# 2025-11-28 22:13:42.450063
++create a settings page and a link to it in the top navbar 
+
+# 2025-11-28 22:15:39.362708
++y
+
+# 2025-11-28 22:16:50.278252
++/clear 
+
+# 2025-11-28 22:17:59.922720
++create a landing frontpage. don't add it to indra yet, just make the component and a story
+
+# 2025-11-28 22:19:08.867841
++y
+
+# 2025-11-28 22:21:33.304746
++above the login/logout, make a navitem "about" navigates the user to the landinge page. The landing page does not include any of the sidebars, it's just a regular full size page 
+
+# 2025-11-28 22:22:29.338222
++above the login/logout, make a navitem "about" loads the landing page into the main content 
+
+# 2025-11-28 22:32:16.421304
++add 2 more features to the landing page 
+
+# 2025-11-28 22:34:18.220100
++move the "call to action" into a 6th feature
+
+# 2025-11-28 22:43:05.905520
++/clear 
+
+# 2025-11-28 22:43:45.562254
++the right sidebar should be scrollable independent of the main content and the page. The 3 sections should be collapsible
+
+# 2025-11-28 22:48:35.348185
++the name of the owner of a post should be clickable, taking you to that user's profile 
+
+# 2025-11-28 22:52:51.638544
++we need to a new type of metrics. This is for users, not for posts. Users can rate each other upon 3 boolean options. 1) Is this person who they say they are? 2) Is this person's birthdate ccurate 3) Is this user machine or human
+
+# 2025-11-28 22:54:43.052284
++y
+
+# 2025-11-28 22:55:28.215539
++put these metrics in a modal similar tothe posts metric modal. Put a button in the user profile banner to launch this modal
+
+# 2025-11-28 22:57:44.194020
++y
+
+# 2025-11-28 23:00:28.085033
++in the left nav bar add a link for followers, so users can know who follows their content 
+
+# 2025-11-28 23:06:14.067832
++each user's wall/profile should have a list of all their posts, 
+
+# 2025-11-28 23:09:01.084860
++clicking the profile tab should take you to your profile page. Update the posts so that all users have a few posts 
+
+# 2025-11-28 23:09:13.803341
++clicking the profile tab should take you to your profile page. Update the Fake DB posts so that all users have a few posts on their p[age 
+
+# 2025-11-28 23:12:21.181265
++/clear 
+
+# 2025-11-28 23:12:29.579704
++add a lot more data to the fake backend DB
+
+# 2025-11-28 23:39:58.247062
++add a control to the user profile page that allows you to rate, friend, follow or block  that user 
+
+# 2025-11-28 23:43:09.597602
++clicking on a user's profile navigates to my own profile
+
+# 2025-11-28 23:49:53.366827
++we need to update the relationships . you can be friends or unrelated. You can block each other other but remain friends. A block is one-way. you can follow each other without being friends, but not if they have blocked you or vice-versa or both. you can be friends with someone you have blocked , but they will remain hidden from search results and chats.
+
+# 2025-11-28 23:54:18.125776
++blocked users should not appear in the right sidebar 
+
+# 2025-11-28 23:58:59.394800
++ChatWalls should sort their posts by time of creation. upscrolling chatWalls put the newest content at the bottom and downscrolling ChatWalls put the newest content at the top 
+
+# 2025-11-29 00:05:22.625935
++/clear 
+
+# 2025-11-29 00:06:03.120091
++we need the main content to maximize to fill the height of the page but also to allow scrolling within that space 
+
+# 2025-11-29 00:12:30.635961
++for all ChatWalls, make them upscrolling. Don't remove the prop, just make every instance an upscrolling type. We want to input forms, 1 on top thats lets you filter and 1 on the bottom for input. This needs to be customizable because 1) the profile need and the  feed needs a filter and a input form 2) all the rest do not need an input form along the bottom
+
+# 2025-11-29 00:15:07.122898
++for profile and feed, the lower input form should be pinned to the bottom of the screen
+
+# 2025-11-29 00:16:43.662090
++remove the errant input form above the content. the lower input form should be constrained by the central column
+
+# 2025-11-29 00:18:09.298540
++the lower input form is not positioned right 
+
+# 2025-11-29 00:23:58.191751
++ChatWalls should be scrolled down by default 
+
+# 2025-11-29 00:26:28.704074
++ChatWalls should be scrolled all the way down by default 
+
+# 2025-11-29 06:24:46.195769
++/clear 
+
+# 2025-11-29 06:24:52.620801
++/drop
+
+# 2025-11-29 06:26:12.980491
++/add example/components/IndraV0.js example/components/IndraV0/Backend.js example/components/IndraV0/MainContent.js example/components/IndraV0/ChatWallContent.js example/components/IndraV0/SearchForm.js example/components/IndraV0/ProfileBanner.js example/components/IndraV0/ChatInputForm.js example/components/IndraV0/ChatWallContent.js example/components/IndraV0/RightSidebar.js example/components/IndraV0/Sidebar.js 
+
+# 2025-11-29 06:33:00.592835
++We need to refactor the layout of the ChatWall. for some intanced, there is a search input form at the top. This search form need to remain visible at all times
+
+# 2025-11-29 06:33:22.377340
++/add example/components/IndraV0/ChatWall.js 
+
+# 2025-11-29 06:33:24.708989
++We need to refactor the layout of the ChatWall. for some intanced, there is a search input form at the top. This search form need to remain visible at all times
+
+# 2025-11-29 06:35:15.129984
++/add example/components/IndraV0/Posts.js
+
+# 2025-11-29 06:35:33.014295
++add a lot more posts to the users in fakeDb
+
+# 2025-11-29 06:38:34.773290
++/clear
+
+# 2025-11-29 06:38:42.284009
++We need to refactor the layout of the ChatWall. for some intances, there is a search input form at the top. This search form need to remain visible at all times
+
+# 2025-11-29 06:42:52.869507
++that did not work
+
+# 2025-11-29 06:45:09.717407
++the ChatWall needs to be scrolled down as much as possible by default
+
+# 2025-11-29 06:47:18.024835
++that did nwork
+
+# 2025-11-29 06:47:21.533638
++that did not work
+
+# 2025-11-29 06:49:44.871017
++that didn't work. Ensure you are scrolling the ChatWall in the main content 
+
+# 2025-11-29 06:52:01.052351
++the correect element to scroll is "#scrolling-main-content-container"
+
+# 2025-11-29 06:53:17.997503
++I hate this solution
+
+# 2025-11-29 06:55:41.098766
++works better but the sroll jumps do to the bottom after approx 1 second 
+
+# 2025-11-29 07:01:53.166284
++/add example/components/IndraV0/Post.js 

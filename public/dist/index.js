@@ -20206,7 +20206,13 @@ var storyboardrc_default = {
     "example/stories/ProfileChatWall.stories.js",
     "example/stories/FeedChatWall.stories.js",
     "example/stories/RecommendationsChatWall.stories.js",
-    "example/stories/ThreadChatWall.stories.js"
+    "example/stories/ThreadChatWall.stories.js",
+    "example/stories/ProfileBanner.stories.js",
+    "example/stories/PopularChatWall.stories.js",
+    "example/stories/SearchChatWall.stories.js",
+    "example/stories/FriendsChatWall.stories.js",
+    "example/stories/NotificationsChatWall.stories.js",
+    "example/stories/LandingPage.stories.js"
   ]
 };
 
@@ -20322,7 +20328,6 @@ function App() {
       overflow: "auto",
       backgroundColor: "#fff"
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { style: { marginTop: 0, marginBottom: "20px", color: "#333" }, children: displayName || "Select a Story" }),
       isLoading && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { children: "Loading story..." }),
       !isLoading && CurrentStoryComponent && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CurrentStoryComponent, {}),
       !isLoading && selectedStory && !CurrentStoryComponent && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [

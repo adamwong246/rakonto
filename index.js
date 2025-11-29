@@ -149,9 +149,9 @@ function App() {
                 overflow: 'auto',
                 backgroundColor: '#fff'
             }}>
-                <h1 style={{ marginTop: 0, marginBottom: '20px', color: '#333' }}>
+                {/* <h1 style={{ marginTop: 0, marginBottom: '20px', color: '#333' }}>
                     {displayName || 'Select a Story'}
-                </h1>
+                </h1> */}
                 {isLoading && <div>Loading story...</div>}
                 {!isLoading && CurrentStoryComponent && <CurrentStoryComponent />}
                 {!isLoading && selectedStory && !CurrentStoryComponent && (

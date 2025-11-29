@@ -1,217 +1,259 @@
-import React, { useState } from "react";
-import { Form, Button, InputGroup } from "react-bootstrap";
+import React, { useState, useContext, useRef, useEffect } from "react";
+import { ChatInputForm } from "./ChatInputForm.js";
+import { SearchForm } from "./SearchForm.js";
+import { usePosts } from "./usePosts.js";
+import { ProfileBanner } from "./ProfileBanner.js";
+import { LikabilityModal } from "./LikabilityModal.js";
+import { FocusedPostBanner } from "./FocusedPostBanner.js";
+import { ChatWallContent } from "./ChatWallContent.js";
+import { BackendContext } from "./Backend.js";
 
-export function ChatWall({ showInputForm = false, isFlatList = true, context = 'profile' }) {
+export function ChatWall({
+  showInputForm = false,
+  context = "profile",
+  scrollDirection = "down",
+  room = null,
+  profileUser = null,
+  onUserClick = null,
+}) {
   const [message, setMessage] = useState("");
-  const [posts, setPosts] = useState(() => {
-    // Different initial posts based on context
-    if (context === 'profile') {
-      return [
-        {
-          id: 1,
-          user: "You",
-          content: "Just finished my new project! Feeling accomplished!",
-          time: "2 hours ago",
-        },
-        {
-          id: 2,
-          user: "You",
-          content: "Beautiful day for a hike 🏞️",
-          time: "1 day ago",
-        },
-        {
-          id: 3,
-          user: "You",
-          content: "Learning React has been amazing!",
-          time: "3 days ago",
-        }
-      ];
-    } else if (context === 'feed') {
-      return [
-        {
-          id: 1,
-          user: "You",
-          content: "Just finished my new project!",
-          time: "2 hours ago",
-        },
-        {
-          id: 2,
-          user: "Alice",
-          content: "Check out this cool article I found!",
-          time: "1 hour ago",
-        },
-        {
-          id: 3,
-          user: "Bob",
-          content: "Just released a new version of my app!",
-          time: "3 hours ago",
-        },
-        {
-          id: 4,
-          user: "You",
-          content: "Beautiful day for a hike 🏞️",
-          time: "1 day ago",
-        },
-        {
-          id: 5,
-          user: "Charlie",
-          content: "Anyone up for coffee this weekend?",
-          time: "5 hours ago",
-        }
-      ];
-    } else {
-      // Chat context
-      return [
-        {
-          id: 1,
-          user: "Alice",
-          content: "Hey, how are you doing?",
-          time: "10:30 AM",
-        },
-        {
-          id: 2,
-          user: "You",
-          content: "I'm good! Working on the new project.",
-          time: "10:32 AM",
-        },
-        {
-          id: 3,
-          user: "Alice",
-          content: "That sounds exciting! Let me know if you need help.",
-          time: "10:35 AM",
-        }
-      ];
-    }
-  });
+  // Pass profileUser to usePosts to filter posts by the profile user
+  const { posts, addPost, sortPosts, searchPosts, isLoading } = usePosts(
+    context,
+    room,
+    profileUser
+  );
+  const [searchResults, setSearchResults] = useState(null);
+  const [focusedPostId, setFocusedPostId] = useState(null);
+  const [focusedPost, setFocusedPost] = useState(null);
+  const [postHierarchy, setPostHierarchy] = useState([]);
+  const [showLikabilityModal, setShowLikabilityModal] = useState(false);
+  const [userLikabilityScore, setUserLikabilityScore] = useState(null);
+  const [averageLikability, setAverageLikability] = useState(0);
+  const backend = useContext(BackendContext);
+  const [currentUser, setCurrentUser] = useState(null);
+  const contentRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (message.trim()) {
-      const newPost = {
-        id: posts.length + 1,
-        user: "You",
-        content: message,
-        time: "Just now",
-      };
-      setPosts([...posts, newPost]);
+      addPost(message, focusedPostId);
       setMessage("");
+      // Don't reset focusedPostId here - stay in the focused view to see the new reply
     }
   };
 
-  const getPostStyle = (post) => {
-    if (context === 'profile') {
-      // Profile: always flat list
-      return {
-        margin: "10px 0",
-        padding: "10px",
-        borderRadius: "8px",
-        backgroundColor: "#f5f5f5",
-        maxWidth: "100%",
-      };
-    } else if (context === 'feed') {
-      // Feed: user's posts on the right, others on the left
-      return {
-        margin: "10px 0",
-        padding: "10px",
-        borderRadius: "8px",
-        backgroundColor: post.user === "You" ? "#e3f2fd" : "#f5f5f5",
-        alignSelf: post.user === "You" ? "flex-end" : "flex-start",
-        maxWidth: "70%",
-        marginLeft: post.user === "You" ? "auto" : "0",
-        marginRight: post.user === "You" ? "0" : "auto",
-      };
-    } else {
-      // Chat: similar to feed
-      return {
-        margin: "10px 0",
-        padding: "10px",
-        borderRadius: "8px",
-        backgroundColor: post.user === "You" ? "#e3f2fd" : "#f5f5f5",
-        alignSelf: post.user === "You" ? "flex-end" : "flex-start",
-        maxWidth: "70%",
-        marginLeft: post.user === "You" ? "auto" : "0",
-        marginRight: post.user === "You" ? "0" : "auto",
-      };
+  // Find a post by ID in the posts tree
+  const findPostById = (posts, postId) => {
+    for (const post of posts) {
+      if (post.id === postId) {
+        return post;
+      }
+      if (post.children) {
+        const found = findPostById(post.children, postId);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+  // Build hierarchy when focusing on a post
+  const handleReply = (postId) => {
+    const post = findPostById(displayPosts, postId);
+    if (post) {
+      setFocusedPostId(postId);
+      setFocusedPost(post);
+
+      // Build hierarchy - for now, we'll just track the immediate parent
+      // In a real implementation, you'd want to build the full path
+      const hierarchy = [post];
+      setPostHierarchy(hierarchy);
     }
   };
+
+  const handleBack = () => {
+    if (postHierarchy.length > 1) {
+      // Go up one level
+      const newHierarchy = [...postHierarchy];
+      newHierarchy.pop();
+      const newFocusedPost = newHierarchy[newHierarchy.length - 1];
+      setFocusedPostId(newFocusedPost.id);
+      setFocusedPost(newFocusedPost);
+      setPostHierarchy(newHierarchy);
+    } else {
+      // Back to root view
+      setFocusedPostId(null);
+      setFocusedPost(null);
+      setPostHierarchy([]);
+    }
+  };
+
+  const handleSearch = async (queryOrResults) => {
+    if (Array.isArray(queryOrResults)) {
+      // If it's an array, it's already formatted results from the backend
+      setSearchResults(queryOrResults);
+    } else {
+      // If it's a string, use the existing searchPosts function
+      const results = await searchPosts(queryOrResults);
+      setSearchResults(results);
+    }
+  };
+
+  const displayPosts = searchResults || posts;
+  const sortedPosts = sortPosts(displayPosts, scrollDirection);
+
+  // Fetch current user
+  React.useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const user = await backend.getCurrentUser();
+        setCurrentUser(user);
+      } catch (error) {
+        console.error("Error fetching current user:", error);
+      }
+    };
+
+    fetchCurrentUser();
+  }, [backend]);
+
+  // Scroll to bottom when component first mounts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const scrollingElement = document.getElementById('scrolling-main-content-container');
+      if (scrollingElement) {
+        scrollingElement.scrollTop = scrollingElement.scrollHeight;
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Track if we should auto-scroll
+  const shouldAutoScrollRef = useRef(true);
+
+  // Scroll to bottom when posts are loaded or updated, but only if we're near the bottom
+  useEffect(() => {
+    if (!isLoading) {
+      const timer = setTimeout(() => {
+        const scrollingElement = document.getElementById('scrolling-main-content-container');
+        if (scrollingElement && shouldAutoScrollRef.current) {
+          scrollingElement.scrollTop = scrollingElement.scrollHeight;
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [posts, isLoading, focusedPostId, searchResults]);
+
+  // Track user scrolling to determine if we should auto-scroll
+  useEffect(() => {
+    const scrollingElement = document.getElementById('scrolling-main-content-container');
+    if (!scrollingElement) return;
+
+    const handleScroll = () => {
+      const threshold = 100; // pixels from bottom
+      const isNearBottom = 
+        scrollingElement.scrollHeight - scrollingElement.scrollTop - scrollingElement.clientHeight < threshold;
+      shouldAutoScrollRef.current = isNearBottom;
+    };
+
+    scrollingElement.addEventListener('scroll', handleScroll);
+    return () => scrollingElement.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div
-      style={context !== 'profile' ? { display: "flex", flexDirection: "column" } : {}}
-    >
-      <h3>Chat Wall</h3>
-      {posts.map((post) => (
-        <div key={post.id} style={getPostStyle(post)}>
-          {context === 'profile' ? (
-            // Profile layout: always show user info and content
-            <>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "5px",
-                }}
-              >
-                <div
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "50%",
-                    backgroundColor: "#4A154B",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "white",
-                    marginRight: "10px",
-                    fontSize: "14px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {post.user.charAt(0)}
-                </div>
-                <div>
-                  <strong>{post.user}</strong>
-                  <div style={{ fontSize: "12px", color: "#666" }}>{post.time}</div>
-                </div>
-              </div>
-              <div style={{ marginLeft: "42px" }}>
-                {post.content}
-              </div>
-            </>
-          ) : (
-            // Feed and Chat layout: compact with user and time
-            <>
-              <div style={{ fontWeight: "bold" }}>{post.user}</div>
-              <div>{post.content}</div>
-              <div style={{ fontSize: "12px", color: "#666", textAlign: "right" }}>{post.time}</div>
-            </>
-          )}
-        </div>
-      ))}
-
-      {showInputForm && (
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", position: "relative" }}>
+      {/* Always visible search form at the top */}
+      {(context === "profile" ||
+        context === "feed" ||
+        context === "search" ||
+        context === "friends" ||
+        context === "blocked" ||
+        context === "following") && (
         <div
           style={{
-            padding: "20px 0",
-            borderTop: "1px solid #ddd",
-            marginTop: "20px",
+            position: "sticky",
+            top: 0,
+            zIndex: 100,
+            backgroundColor: "white",
+            borderBottom: "1px solid #ddd",
+            height: '80px', // Fixed height to ensure consistent spacing
           }}
         >
-          <Form onSubmit={handleSubmit}>
-            <InputGroup>
-              <Form.Control
-                type="text"
-                placeholder="Type your message..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              <Button variant="primary" type="submit">
-                Send
-              </Button>
-            </InputGroup>
-          </Form>
+          <SearchForm onSearch={handleSearch} context={context} />
         </div>
       )}
+      
+      {/* Content area that scrolls beneath the search form */}
+      <div 
+        ref={contentRef}
+        style={{ 
+          flex: 1, 
+          minHeight: 0, 
+          overflow: "auto",
+        }}
+      >
+        {/* Focused Post Banner */}
+        {focusedPostId && (
+          <FocusedPostBanner
+            focusedPost={focusedPost}
+            onBack={handleBack}
+            onShowLikabilityModal={() => setShowLikabilityModal(true)}
+          />
+        )}
+        
+        <ChatWallContent
+          isLoading={isLoading}
+          focusedPostId={focusedPostId}
+          focusedPost={focusedPost}
+          displayPosts={displayPosts}
+          sortedPosts={sortedPosts}
+          context={context}
+          onReply={handleReply}
+          onUserClick={onUserClick}
+        />
+        
+        {/* Profile Banner - Only show for profile context */}
+        {context === "profile" && !focusedPostId && (
+          <ProfileBanner user={profileUser} />
+        )}
+      </div>
+
+      {/* Fixed footer section */}
+      <div style={{ flexShrink: 0 }}>
+        {/* Input form at the bottom for contexts that need it */}
+        {showInputForm &&
+          // Only show input form if we're on our own profile or in a chat
+          (context !== "profile" ||
+            (profileUser &&
+              currentUser &&
+              profileUser.uid === currentUser.uid)) && (
+            <div
+              style={{
+                backgroundColor: "white",
+                borderTop: "1px solid #ddd",
+                boxSizing: "border-box",
+              }}
+            >
+              <ChatInputForm
+                message={message}
+                setMessage={setMessage}
+                handleSubmit={handleSubmit}
+                position="bottom"
+                replyingTo={focusedPostId}
+              />
+            </div>
+          )}
+      </div>
+
+      {/* Likability Modal */}
+      <LikabilityModal
+        show={showLikabilityModal}
+        onHide={() => setShowLikabilityModal(false)}
+        postId={focusedPostId}
+        userLikabilityScore={userLikabilityScore}
+        setUserLikabilityScore={setUserLikabilityScore}
+        averageLikability={averageLikability}
+        setAverageLikability={setAverageLikability}
+      />
     </div>
   );
 }
