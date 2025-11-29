@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { BackendContext } from './Backend.js';
 
+import { BaseColor } from "./style.js"
+
 export function SubjectModal({ show, onHide, subject, currentUser }) {
     const backend = useContext(BackendContext);
     const [userLoveHate, setUserLoveHate] = useState(null);
@@ -103,7 +105,7 @@ export function SubjectModal({ show, onHide, subject, currentUser }) {
                         width: '100px',
                         height: '100px',
                         borderRadius: '50%',
-                        backgroundColor: '#4A154B',
+                        backgroundColor: BaseColor,
                         display: 'inline-flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -119,7 +121,7 @@ export function SubjectModal({ show, onHide, subject, currentUser }) {
                 </div>
                 
                 <div style={{ marginBottom: '30px' }}>
-                    <h5 style={{ color: '#4A154B', marginBottom: '15px' }}>Your Reaction</h5>
+                    <h5 style={{ color: BaseColor, marginBottom: '15px' }}>Your Reaction</h5>
                     <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
                         <Button 
                             variant={userLoveHate === 'love' ? 'success' : 'outline-success'}
@@ -149,7 +151,7 @@ export function SubjectModal({ show, onHide, subject, currentUser }) {
                 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                     <div>
-                        <h5 style={{ color: '#4A154B', marginBottom: '15px' }}>Loved By ({loves.length})</h5>
+                        <h5 style={{ color: BaseColor, marginBottom: '15px' }}>Loved By ({loves.length})</h5>
                         <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
                             {loves.map((item, index) => (
                                 <div key={index} style={{
@@ -165,7 +167,7 @@ export function SubjectModal({ show, onHide, subject, currentUser }) {
                                         width: '30px',
                                         height: '30px',
                                         borderRadius: '50%',
-                                        backgroundColor: '#4A154B',
+                                        backgroundColor: BaseColor,
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
@@ -185,7 +187,7 @@ export function SubjectModal({ show, onHide, subject, currentUser }) {
                     </div>
                     
                     <div>
-                        <h5 style={{ color: '#4A154B', marginBottom: '15px' }}>Hated By ({hates.length})</h5>
+                        <h5 style={{ color: BaseColor, marginBottom: '15px' }}>Hated By ({hates.length})</h5>
                         <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
                             {hates.map((item, index) => (
                                 <div key={index} style={{
@@ -201,7 +203,7 @@ export function SubjectModal({ show, onHide, subject, currentUser }) {
                                         width: '30px',
                                         height: '30px',
                                         borderRadius: '50%',
-                                        backgroundColor: '#4A154B',
+                                        backgroundColor: BaseColor,
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',

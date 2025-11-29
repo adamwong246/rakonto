@@ -1,9 +1,10 @@
-import React from 'react';
+
+import { BaseColor } from "./../IndraV0/style.js"
 
 export function HorizontalNav({ activeTab, setActiveTab, onMyProfileClick }) {
     return (
         <div style={{
-            backgroundColor: '#4A154B',
+            backgroundColor: BaseColor,
             padding: '10px 20px',
             borderBottom: '1px solid #611f69'
         }}>

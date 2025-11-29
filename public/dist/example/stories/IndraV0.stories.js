@@ -7025,11 +7025,14 @@ var FakeBackend = class {
 var backend = new FakeBackend();
 var BackendContext = import_react57.default.createContext();
 
+// example/components/IndraV0/style.ts
+var BaseColor = "grey";
+
 // example/components/IndraV0/HorizontalNav.tsx
 var import_jsx_runtime63 = __toESM(require_jsx_runtime(), 1);
 function HorizontalNav({ activeTab, setActiveTab, onMyProfileClick }) {
   return /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("div", { style: {
-    backgroundColor: "#4A154B",
+    backgroundColor: BaseColor,
     padding: "10px 20px",
     borderBottom: "1px solid #611f69"
   }, children: /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)("div", { style: {
@@ -7638,7 +7641,7 @@ var RightSidebar = ({ activeTab, setActiveTab }) => {
     }
   };
   return /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)("div", { style: {
-    backgroundColor: "#4A154B",
+    backgroundColor: BaseColor,
     padding: "20px 0",
     borderLeft: "1px solid #611f69",
     overflowY: "auto",
@@ -8011,7 +8014,7 @@ function usePosts(context4, room, profileUser = null) {
 // example/components/IndraV0/ProfileBanner.js
 var import_react67 = __toESM(require_react(), 1);
 
-// example/components/IndraV0/UserMetricsModal.js
+// example/components/IndraV0/UserMetricsModal.tsx
 var import_react63 = __toESM(require_react(), 1);
 var import_jsx_runtime68 = __toESM(require_jsx_runtime(), 1);
 function UserMetricsModal({ show, onHide, targetUser, currentUser }) {
@@ -8076,7 +8079,7 @@ function UserMetricsModal({ show, onHide, targetUser, currentUser }) {
       margin: "0 5px",
       border: "1px solid #ddd",
       borderRadius: "4px",
-      backgroundColor: isSelected ? "#4A154B" : "white",
+      backgroundColor: isSelected ? BaseColor : "white",
       color: isSelected ? "white" : "#333",
       cursor: "pointer",
       fontSize: "14px"
@@ -8258,7 +8261,7 @@ function UserMetricsModal({ show, onHide, targetUser, currentUser }) {
   ] });
 }
 
-// example/components/IndraV0/RelationshipModal.js
+// example/components/IndraV0/RelationshipModal.tsx
 var import_react64 = __toESM(require_react(), 1);
 var import_jsx_runtime69 = __toESM(require_jsx_runtime(), 1);
 function RelationshipModal({ show, onHide, targetUser, currentUser }) {
@@ -8319,7 +8322,7 @@ function RelationshipModal({ show, onHide, targetUser, currentUser }) {
           width: "80px",
           height: "80px",
           borderRadius: "50%",
-          backgroundColor: "#4A154B",
+          backgroundColor: BaseColor,
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
@@ -8430,10 +8433,10 @@ function RelationshipModal({ show, onHide, targetUser, currentUser }) {
   ] });
 }
 
-// example/components/IndraV0/AboutModal.js
+// example/components/IndraV0/AboutModal.tsx
 var import_react66 = __toESM(require_react(), 1);
 
-// example/components/IndraV0/GenderIdentitySquare.js
+// example/components/IndraV0/GenderIdentitySquare.tsx
 var import_react65 = __toESM(require_react(), 1);
 var import_jsx_runtime70 = __toESM(require_jsx_runtime(), 1);
 function GenderIdentitySquare({
@@ -8512,7 +8515,7 @@ function GenderIdentitySquare({
             top: "5px",
             left: "5px",
             fontSize: "12px",
-            color: "#4A154B",
+            color: BaseColor,
             fontWeight: "bold"
           }, children: [
             "Man: ",
@@ -8524,7 +8527,7 @@ function GenderIdentitySquare({
             bottom: "5px",
             right: "5px",
             fontSize: "12px",
-            color: "#4A154B",
+            color: BaseColor,
             fontWeight: "bold"
           }, children: [
             "Woman: ",
@@ -8541,7 +8544,7 @@ function GenderIdentitySquare({
                 width: "16px",
                 height: "16px",
                 borderRadius: "50%",
-                backgroundColor: "#4A154B",
+                backgroundColor: BaseColor,
                 border: "2px solid white",
                 cursor: disabled ? "default" : "move",
                 boxShadow: "0 2px 4px rgba(0,0,0,0.3)"
@@ -8571,7 +8574,7 @@ function GenderIdentitySquare({
   ] });
 }
 
-// example/components/IndraV0/AboutModal.js
+// example/components/IndraV0/AboutModal.tsx
 var import_jsx_runtime71 = __toESM(require_jsx_runtime(), 1);
 function AboutModal({ show, onHide, user }) {
   const backend2 = (0, import_react66.useContext)(BackendContext);
@@ -8785,7 +8788,7 @@ function AboutModal({ show, onHide, user }) {
           width: "100px",
           height: "100px",
           borderRadius: "50%",
-          backgroundColor: "#4A154B",
+          backgroundColor: BaseColor,
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
@@ -8797,7 +8800,7 @@ function AboutModal({ show, onHide, user }) {
         /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h4", { children: user?.name })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: { padding: "0 20px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }, children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h5", { style: { color: "#4A154B", margin: 0 }, children: "About Me" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }, children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h5", { style: { color: BaseColor, margin: 0 }, children: "About Me" }) }),
         isEditing ? /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
             Form_default.Control,
@@ -8828,7 +8831,7 @@ function AboutModal({ show, onHide, user }) {
           borderRadius: "8px"
         }, children: user?.aboutMe || "This user hasn't written an about me yet." }),
         /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: { marginTop: "30px" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h5", { style: { color: "#4A154B", marginBottom: "15px" }, children: "Personal Information" }),
+          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h5", { style: { color: BaseColor, marginBottom: "15px" }, children: "Personal Information" }),
           /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: {
             fontSize: "14px",
             backgroundColor: "#f0f8ff",
@@ -8883,7 +8886,7 @@ function AboutModal({ show, onHide, user }) {
           ] })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: { marginTop: "30px" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h5", { style: { color: "#4A154B", marginBottom: "15px" }, children: "Gender Identity Information" }),
+          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h5", { style: { color: BaseColor, marginBottom: "15px" }, children: "Gender Identity Information" }),
           /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: {
             fontSize: "14px",
             backgroundColor: "#f0f8ff",
@@ -8910,7 +8913,7 @@ function AboutModal({ show, onHide, user }) {
             ] }),
             isEditing ? /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "20px" }, children: [
               /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: { textAlign: "center" }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h6", { style: { color: "#4A154B", marginBottom: "10px" }, children: "Gender Identity" }),
+                /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h6", { style: { color: BaseColor, marginBottom: "10px" }, children: "Gender Identity" }),
                 /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
                   GenderIdentitySquare,
                   {
@@ -8922,7 +8925,7 @@ function AboutModal({ show, onHide, user }) {
                 )
               ] }),
               /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: { textAlign: "center" }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h6", { style: { color: "#4A154B", marginBottom: "10px" }, children: "Anatomical Sex" }),
+                /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h6", { style: { color: BaseColor, marginBottom: "10px" }, children: "Anatomical Sex" }),
                 /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
                   GenderIdentitySquare,
                   {
@@ -8934,7 +8937,7 @@ function AboutModal({ show, onHide, user }) {
                 )
               ] }),
               /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: { textAlign: "center" }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h6", { style: { color: "#4A154B", marginBottom: "10px" }, children: "Sexual Attraction" }),
+                /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h6", { style: { color: BaseColor, marginBottom: "10px" }, children: "Sexual Attraction" }),
                 /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
                   GenderIdentitySquare,
                   {
@@ -8946,7 +8949,7 @@ function AboutModal({ show, onHide, user }) {
                 )
               ] }),
               /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: { textAlign: "center" }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h6", { style: { color: "#4A154B", marginBottom: "10px" }, children: "Romantic Attraction" }),
+                /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h6", { style: { color: BaseColor, marginBottom: "10px" }, children: "Romantic Attraction" }),
                 /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
                   GenderIdentitySquare,
                   {
@@ -9002,7 +9005,7 @@ function AboutModal({ show, onHide, user }) {
           ] })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: { marginTop: "30px" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h5", { style: { color: "#4A154B", marginBottom: "15px" }, children: "Loves & Hates" }),
+          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h5", { style: { color: BaseColor, marginBottom: "15px" }, children: "Loves & Hates" }),
           /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("div", { style: {
             backgroundColor: "#f0f8ff",
             padding: "15px",
@@ -9147,7 +9150,7 @@ function AboutModal({ show, onHide, user }) {
           )) }) : /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("p", { style: { color: "#666", textAlign: "center" }, children: "No loves or hates added yet." }) }) })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: { marginTop: "30px" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h5", { style: { color: "#4A154B", marginBottom: "15px" }, children: "Profile Information" }),
+          /* @__PURE__ */ (0, import_jsx_runtime71.jsx)("h5", { style: { color: BaseColor, marginBottom: "15px" }, children: "Profile Information" }),
           /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)("div", { style: {
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
@@ -9814,7 +9817,7 @@ function FocusedPostBanner({ focusedPost, onBack, onShowLikabilityModal }) {
 // example/components/IndraV0/ChatWallContent.js
 var import_react75 = __toESM(require_react(), 1);
 
-// example/components/IndraV0/Post.js
+// example/components/IndraV0/Post.tsx
 var import_react74 = __toESM(require_react(), 1);
 var import_jsx_runtime79 = __toESM(require_jsx_runtime(), 1);
 function Post({ post, context: context4, onReply, onUserClick, depth = 0 }) {
@@ -10090,7 +10093,7 @@ function Post({ post, context: context4, onReply, onUserClick, depth = 0 }) {
                 width: "32px",
                 height: "32px",
                 borderRadius: "50%",
-                backgroundColor: "#4A154B",
+                backgroundColor: BaseColor,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -10167,7 +10170,7 @@ function Post({ post, context: context4, onReply, onUserClick, depth = 0 }) {
                 width: "48px",
                 height: "48px",
                 borderRadius: "50%",
-                backgroundColor: "#4A154B",
+                backgroundColor: BaseColor,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -10227,7 +10230,7 @@ function Post({ post, context: context4, onReply, onUserClick, depth = 0 }) {
                   width: "32px",
                   height: "32px",
                   borderRadius: "50%",
-                  backgroundColor: "#4A154B",
+                  backgroundColor: BaseColor,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -10283,7 +10286,7 @@ function Post({ post, context: context4, onReply, onUserClick, depth = 0 }) {
                     width: "32px",
                     height: "32px",
                     borderRadius: "50%",
-                    backgroundColor: "#4A154B",
+                    backgroundColor: BaseColor,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -10331,7 +10334,7 @@ function Post({ post, context: context4, onReply, onUserClick, depth = 0 }) {
                   marginRight: "5px",
                   fontSize: "12px",
                   padding: "5px 10px",
-                  backgroundColor: "#4A154B",
+                  backgroundColor: BaseColor,
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
@@ -10347,7 +10350,7 @@ function Post({ post, context: context4, onReply, onUserClick, depth = 0 }) {
                 style: {
                   fontSize: "12px",
                   padding: "5px 10px",
-                  backgroundColor: "#4A154B",
+                  backgroundColor: BaseColor,
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
@@ -10393,7 +10396,7 @@ function Post({ post, context: context4, onReply, onUserClick, depth = 0 }) {
                     width: "32px",
                     height: "32px",
                     borderRadius: "50%",
-                    backgroundColor: "#4A154B",
+                    backgroundColor: BaseColor,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -10437,7 +10440,7 @@ function Post({ post, context: context4, onReply, onUserClick, depth = 0 }) {
                   marginRight: "5px",
                   fontSize: "12px",
                   padding: "5px 10px",
-                  backgroundColor: "#4A154B",
+                  backgroundColor: BaseColor,
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
@@ -10455,7 +10458,7 @@ function Post({ post, context: context4, onReply, onUserClick, depth = 0 }) {
                 style: {
                   fontSize: "12px",
                   padding: "5px 10px",
-                  backgroundColor: "#4A154B",
+                  backgroundColor: BaseColor,
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
@@ -10555,7 +10558,7 @@ function ChatWallContent({
   }
 }
 
-// example/components/IndraV0/SubjectModal.js
+// example/components/IndraV0/SubjectModal.tsx
 var import_react76 = __toESM(require_react(), 1);
 var import_jsx_runtime81 = __toESM(require_jsx_runtime(), 1);
 function SubjectModal({ show, onHide, subject, currentUser }) {
@@ -10639,7 +10642,7 @@ function SubjectModal({ show, onHide, subject, currentUser }) {
           width: "100px",
           height: "100px",
           borderRadius: "50%",
-          backgroundColor: "#4A154B",
+          backgroundColor: BaseColor,
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
@@ -10652,7 +10655,7 @@ function SubjectModal({ show, onHide, subject, currentUser }) {
         /* @__PURE__ */ (0, import_jsx_runtime81.jsx)("p", { style: { color: "#666" }, children: displaySubject.description })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)("div", { style: { marginBottom: "30px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime81.jsx)("h5", { style: { color: "#4A154B", marginBottom: "15px" }, children: "Your Reaction" }),
+        /* @__PURE__ */ (0, import_jsx_runtime81.jsx)("h5", { style: { color: BaseColor, marginBottom: "15px" }, children: "Your Reaction" }),
         /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)("div", { style: { display: "flex", gap: "10px", justifyContent: "center" }, children: [
           /* @__PURE__ */ (0, import_jsx_runtime81.jsx)(
             Button_default2,
@@ -10685,7 +10688,7 @@ function SubjectModal({ show, onHide, subject, currentUser }) {
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }, children: [
         /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)("h5", { style: { color: "#4A154B", marginBottom: "15px" }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)("h5", { style: { color: BaseColor, marginBottom: "15px" }, children: [
             "Loved By (",
             loves.length,
             ")"
@@ -10704,7 +10707,7 @@ function SubjectModal({ show, onHide, subject, currentUser }) {
                 width: "30px",
                 height: "30px",
                 borderRadius: "50%",
-                backgroundColor: "#4A154B",
+                backgroundColor: BaseColor,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -10718,7 +10721,7 @@ function SubjectModal({ show, onHide, subject, currentUser }) {
           ] })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)("h5", { style: { color: "#4A154B", marginBottom: "15px" }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)("h5", { style: { color: BaseColor, marginBottom: "15px" }, children: [
             "Hated By (",
             hates.length,
             ")"
@@ -10737,7 +10740,7 @@ function SubjectModal({ show, onHide, subject, currentUser }) {
                 width: "30px",
                 height: "30px",
                 borderRadius: "50%",
-                backgroundColor: "#4A154B",
+                backgroundColor: BaseColor,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -11658,9 +11661,6 @@ var MainContent = ({
     /* @__PURE__ */ (0, import_jsx_runtime86.jsx)(Tab_default.Pane, { active: activeTab === "settings", children: /* @__PURE__ */ (0, import_jsx_runtime86.jsx)(Settings, {}) })
   ] }) });
 };
-
-// example/components/IndraV0/style.ts
-var BaseColor = "#4A154B";
 
 // example/components/IndraV0.tsx
 var import_jsx_runtime87 = __toESM(require_jsx_runtime(), 1);

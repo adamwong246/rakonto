@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { BackendContext } from './Backend.js';
 
+import { BaseColor } from "./style.js";
+
 export function RelationshipModal({ show, onHide, targetUser, currentUser }) {
     const backend = useContext(BackendContext);
     const [relationship, setRelationship] = useState('none');
@@ -66,7 +68,7 @@ export function RelationshipModal({ show, onHide, targetUser, currentUser }) {
                         width: '80px',
                         height: '80px',
                         borderRadius: '50%',
-                        backgroundColor: '#4A154B',
+                        backgroundColor: BaseColor,
                         display: 'inline-flex',
                         alignItems: 'center',
                         justifyContent: 'center',

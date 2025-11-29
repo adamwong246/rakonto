@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
+import { BaseColor } from "./style.js"
+
 export function GenderIdentitySquare({ 
     manValue = 50, 
     womanValue = 50, 
@@ -92,7 +94,7 @@ export function GenderIdentitySquare({
                     top: '5px',
                     left: '5px',
                     fontSize: '12px',
-                    color: '#4A154B',
+                    color: BaseColor,
                     fontWeight: 'bold'
                 }}>
                     Man: {manValue}%
@@ -102,7 +104,7 @@ export function GenderIdentitySquare({
                     bottom: '5px',
                     right: '5px',
                     fontSize: '12px',
-                    color: '#4A154B',
+                    color: BaseColor,
                     fontWeight: 'bold'
                 }}>
                     Woman: {womanValue}%
@@ -117,7 +119,7 @@ export function GenderIdentitySquare({
                         width: '16px',
                         height: '16px',
                         borderRadius: '50%',
-                        backgroundColor: '#4A154B',
+                        backgroundColor: BaseColor,
                         border: '2px solid white',
                         cursor: disabled ? 'default' : 'move',
                         boxShadow: '0 2px 4px rgba(0,0,0,0.3)'

@@ -11354,6 +11354,9 @@ fieldset:disabled .btn {
 }
 
 /* example/components/IndraV0/style.css */
+* {
+  color: black;
+}
 /*! Bundled license information:
 
 bootstrap/dist/css/bootstrap.min.css:

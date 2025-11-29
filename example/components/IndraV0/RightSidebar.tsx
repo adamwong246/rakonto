@@ -3,6 +3,8 @@ import { BackendContext } from './Backend';
 import { useDB } from './DBContext';
 import { User, ChatRoom } from './store';
 
+import { BaseColor } from "./../IndraV0/style.js"
+
 interface RightSidebarProps {
     activeTab: string;
     setActiveTab: (tab: string) => void;
@@ -74,7 +76,7 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({ activeTab, setActive
 
     return (
         <div style={{ 
-            backgroundColor: '#4A154B', 
+            backgroundColor: BaseColor, 
             padding: '20px 0', 
             borderLeft: '1px solid #611f69',
             overflowY: 'auto',

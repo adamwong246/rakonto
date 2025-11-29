@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { BackendContext } from './Backend.js';
 
+import { BaseColor } from "./style.js"
+
 export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
   const backend = useContext(BackendContext);
   const [relationship, setRelationship] = useState('none');
@@ -299,7 +301,7 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
                 width: "32px",
                 height: "32px",
                 borderRadius: "50%",
-                backgroundColor: "#4A154B",
+                backgroundColor: BaseColor,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -374,7 +376,7 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
                 width: "48px",
                 height: "48px",
                 borderRadius: "50%",
-                backgroundColor: "#4A154B",
+                backgroundColor: BaseColor,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -434,7 +436,7 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
                 width: "32px",
                 height: "32px",
                 borderRadius: "50%",
-                backgroundColor: "#4A154B",
+                backgroundColor: BaseColor,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -485,7 +487,7 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
                 width: "32px",
                 height: "32px",
                 borderRadius: "50%",
-                backgroundColor: "#4A154B",
+                backgroundColor: BaseColor,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -529,7 +531,7 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
                     marginRight: '5px', 
                     fontSize: '12px', 
                     padding: '5px 10px',
-                    backgroundColor: '#4A154B',
+                    backgroundColor: BaseColor,
                     color: 'white',
                     border: 'none',
                     borderRadius: '4px',
@@ -545,7 +547,7 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
                   style={{ 
                     fontSize: '12px', 
                     padding: '5px 10px',
-                    backgroundColor: '#4A154B',
+                    backgroundColor: BaseColor,
                     color: 'white',
                     border: 'none',
                     borderRadius: '4px',
@@ -588,7 +590,7 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
                 width: "32px",
                 height: "32px",
                 borderRadius: "50%",
-                backgroundColor: "#4A154B",
+                backgroundColor: BaseColor,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -628,7 +630,7 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
                     marginRight: '5px', 
                     fontSize: '12px', 
                     padding: '5px 10px',
-                    backgroundColor: '#4A154B',
+                    backgroundColor: BaseColor,
                     color: 'white',
                     border: 'none',
                     borderRadius: '4px',
@@ -647,7 +649,7 @@ export function Post({ post, context, onReply, onUserClick, depth = 0 }) {
                   style={{ 
                     fontSize: '12px', 
                     padding: '5px 10px',
-                    backgroundColor: '#4A154B',
+                    backgroundColor: BaseColor,
                     color: 'white',
                     border: 'none',
                     borderRadius: '4px',

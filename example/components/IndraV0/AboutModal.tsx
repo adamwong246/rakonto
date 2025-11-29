@@ -3,6 +3,8 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { BackendContext } from './Backend.js';
 import {GenderIdentitySquare} from "./GenderIdentitySquare.js"
 
+import { BaseColor } from "./../IndraV0/style.js"
+
 export function AboutModal({ show, onHide, user }) {
     const backend = useContext(BackendContext);
     const [isEditing, setIsEditing] = useState(false);
@@ -237,7 +239,7 @@ export function AboutModal({ show, onHide, user }) {
                         width: '100px',
                         height: '100px',
                         borderRadius: '50%',
-                        backgroundColor: '#4A154B',
+                        backgroundColor: BaseColor,
                         display: 'inline-flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -253,7 +255,7 @@ export function AboutModal({ show, onHide, user }) {
                 
                 <div style={{ padding: '0 20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-                        <h5 style={{ color: '#4A154B', margin: 0 }}>About Me</h5>
+                        <h5 style={{ color: BaseColor, margin: 0 }}>About Me</h5>
                     </div>
                     
                     {isEditing ? (
@@ -294,7 +296,7 @@ export function AboutModal({ show, onHide, user }) {
                     )}
                     
                     <div style={{ marginTop: '30px' }}>
-                        <h5 style={{ color: '#4A154B', marginBottom: '15px' }}>Personal Information</h5>
+                        <h5 style={{ color: BaseColor, marginBottom: '15px' }}>Personal Information</h5>
                         <div style={{ 
                             fontSize: '14px',
                             backgroundColor: '#f0f8ff',
@@ -361,7 +363,7 @@ export function AboutModal({ show, onHide, user }) {
                     </div>
                     
                     <div style={{ marginTop: '30px' }}>
-                        <h5 style={{ color: '#4A154B', marginBottom: '15px' }}>Gender Identity Information</h5>
+                        <h5 style={{ color: BaseColor, marginBottom: '15px' }}>Gender Identity Information</h5>
                         <div style={{ 
                             fontSize: '14px',
                             backgroundColor: '#f0f8ff',
@@ -392,7 +394,7 @@ export function AboutModal({ show, onHide, user }) {
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
                                     {/* Gender Identity */}
                                     <div style={{ textAlign: 'center' }}>
-                                        <h6 style={{ color: '#4A154B', marginBottom: '10px' }}>Gender Identity</h6>
+                                        <h6 style={{ color: BaseColor, marginBottom: '10px' }}>Gender Identity</h6>
                                         <GenderIdentitySquare
                                             manValue={genderMetrics.genderIdentityMan}
                                             womanValue={genderMetrics.genderIdentityWoman}
@@ -405,7 +407,7 @@ export function AboutModal({ show, onHide, user }) {
                                     
                                     {/* Anatomical Sex */}
                                     <div style={{ textAlign: 'center' }}>
-                                        <h6 style={{ color: '#4A154B', marginBottom: '10px' }}>Anatomical Sex</h6>
+                                        <h6 style={{ color: BaseColor, marginBottom: '10px' }}>Anatomical Sex</h6>
                                         <GenderIdentitySquare
                                             manValue={genderMetrics.anatomicalSexMale}
                                             womanValue={genderMetrics.anatomicalSexFemale}
@@ -418,7 +420,7 @@ export function AboutModal({ show, onHide, user }) {
                                     
                                     {/* Sexual Attraction */}
                                     <div style={{ textAlign: 'center' }}>
-                                        <h6 style={{ color: '#4A154B', marginBottom: '10px' }}>Sexual Attraction</h6>
+                                        <h6 style={{ color: BaseColor, marginBottom: '10px' }}>Sexual Attraction</h6>
                                         <GenderIdentitySquare
                                             manValue={genderMetrics.sexuallyAttractedToMen}
                                             womanValue={genderMetrics.sexuallyAttractedToWomen}
@@ -431,7 +433,7 @@ export function AboutModal({ show, onHide, user }) {
                                     
                                     {/* Romantic Attraction */}
                                     <div style={{ textAlign: 'center' }}>
-                                        <h6 style={{ color: '#4A154B', marginBottom: '10px' }}>Romantic Attraction</h6>
+                                        <h6 style={{ color: BaseColor, marginBottom: '10px' }}>Romantic Attraction</h6>
                                         <GenderIdentitySquare
                                             manValue={genderMetrics.romanticallyAttractedToMen}
                                             womanValue={genderMetrics.romanticallyAttractedToWomen}
@@ -475,7 +477,7 @@ export function AboutModal({ show, onHide, user }) {
                     
                     {/* Love/Hate Items Section */}
                     <div style={{ marginTop: '30px' }}>
-                        <h5 style={{ color: '#4A154B', marginBottom: '15px' }}>Loves & Hates</h5>
+                        <h5 style={{ color: BaseColor, marginBottom: '15px' }}>Loves & Hates</h5>
                         <div style={{ 
                             backgroundColor: '#f0f8ff',
                             padding: '15px',
@@ -626,7 +628,7 @@ export function AboutModal({ show, onHide, user }) {
                     </div>
 
                     <div style={{ marginTop: '30px' }}>
-                        <h5 style={{ color: '#4A154B', marginBottom: '15px' }}>Profile Information</h5>
+                        <h5 style={{ color: BaseColor, marginBottom: '15px' }}>Profile Information</h5>
                         <div style={{ 
                             display: 'grid', 
                             gridTemplateColumns: '1fr 1fr', 

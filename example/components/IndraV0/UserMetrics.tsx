@@ -52,7 +52,7 @@ export function UserMetrics({ targetUser, currentUser }) {
             margin: '0 5px',
             border: '1px solid #ddd',
             borderRadius: '4px',
-            backgroundColor: isSelected ? '#4A154B' : 'white',
+            backgroundColor: isSelected ? BaseColor : 'white',
             color: isSelected ? 'white' : '#333',
             cursor: 'pointer',
             fontSize: '14px'

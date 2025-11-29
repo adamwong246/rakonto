@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Modal, Button, Row } from 'react-bootstrap';
 import { BackendContext } from './Backend.js';
 
+import { BaseColor } from "./style.js"
+
 export function UserMetricsModal({ show, onHide, targetUser, currentUser }) {
     const backend = useContext(BackendContext);
     const [userRatings, setUserRatings] = useState({
@@ -70,7 +72,7 @@ export function UserMetricsModal({ show, onHide, targetUser, currentUser }) {
             margin: '0 5px',
             border: '1px solid #ddd',
             borderRadius: '4px',
-            backgroundColor: isSelected ? '#4A154B' : 'white',
+            backgroundColor: isSelected ? BaseColor : 'white',
             color: isSelected ? 'white' : '#333',
             cursor: 'pointer',
             fontSize: '14px'
