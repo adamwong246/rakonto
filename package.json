@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@emotion/react": "^11.14.0",
+    "@types/react-dom": "^19.2.3",
     "bootstrap": "^5.3.8",
     "esbuild": "^0.27.0",
     "react": "^19.2.0",
@@ -19,7 +20,7 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "dev": "node build.js .storyboardrc.js --dev",
-    "build": "node build.js .storyboardrc.js"
+    "dev": "node --import=tsx build.ts .storyboardrc.js --dev",
+    "build": "node build.ts .storyboardrc.js"
   }
 }

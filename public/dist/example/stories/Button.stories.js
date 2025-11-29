@@ -1,14 +1,12 @@
 import {
+  Story
+} from "../../chunk-QJ3VVPIN.js";
+import {
   __toESM,
-  require_jsx_runtime,
-  require_react
-} from "../../chunk-2GIMI7UT.js";
-
-// example/stories/Button.stories.js
-var import_react2 = __toESM(require_react(), 1);
+  require_jsx_runtime
+} from "../../chunk-C26QU2JX.js";
 
 // example/components/Button.js
-var import_react = __toESM(require_react(), 1);
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 function Button({ primary, size, children, ...props }) {
   const baseStyle = {
@@ -57,16 +55,16 @@ function Button({ primary, size, children, ...props }) {
   );
 }
 
-// example/stories/Button.stories.js
+// example/stories/Button.stories.tsx
 var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
-function ButtonStory() {
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "20px" }, children: [
+Story(
+  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "20px" }, children: [
     /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: "Default Buttons" }),
       /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", gap: "10px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Button, { size: "small", children: "Small Button" }),
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Button, { size: "medium", children: "Medium Button" }),
-        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Button, { size: "large", children: "Large Button" })
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Button, { size: "small", children: "Small Button!" }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Button, { size: "medium", children: "Medium Button!!" }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Button, { size: "large", children: "Large Button!!!" })
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
@@ -77,9 +75,6 @@ function ButtonStory() {
         /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Button, { primary: true, size: "large", children: "Primary Large" })
       ] })
     ] })
-  ] });
-}
-export {
-  ButtonStory as default
-};
+  ] })
+);
 //# sourceMappingURL=Button.stories.js.map

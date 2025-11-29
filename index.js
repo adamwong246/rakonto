@@ -5,7 +5,7 @@ import config from './.storyboardrc.js';
 function App() {
     const [selectedStory, setSelectedStory] = useState(null);
     const [storiesTree, setStoriesTree] = useState({});
-    const [CurrentStoryComponent, setCurrentStoryComponent] = useState(null);
+    const [iframeContent, setIframeContent] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     
     // Build the tree structure from the flat list of stories
@@ -42,21 +42,17 @@ function App() {
         }
     }, []);
     
-    // Load the selected story dynamically
+    // Load the selected story dynamically and prepare iframe content
     useEffect(() => {
         if (selectedStory) {
             setIsLoading(true);
-            console.log("wtf", selectedStory);
-            // Dynamically import the story
-            import(`http://localhost:8000/dist/${selectedStory}`)
-                .then(module => {
-                    setCurrentStoryComponent(() => module.default);
-                    setIsLoading(false);
-                })
-                .catch(error => {
-                    console.error('Error loading story:', error);
-                    setIsLoading(false);
-                });
+            console.log('Setting selected story:', selectedStory);
+            // Create a unique URL for the iframe to load the story
+            // We'll use a query parameter to tell the iframe which story to load
+            const iframeUrl = `/story-iframe.html?story=${encodeURIComponent(selectedStory)}`;
+            console.log('Iframe URL:', iframeUrl);
+            setIframeContent(iframeUrl);
+            // Don't set isLoading to false here - wait for iframe to load
         }
     }, [selectedStory]);
     
@@ -92,7 +88,7 @@ function App() {
                             margin: '2px 0',
                             cursor: 'pointer',
                             borderRadius: '4px',
-                            backgroundColor: selectedStory === storyPath ? '#1ea7fd' : 'transparent',
+                            backgroundColor: selectedStory === storyPath ? 'grey' : 'transparent',
                             color: selectedStory === storyPath ? 'white' : '#333',
                             fontWeight: selectedStory === storyPath ? 'bold' : 'normal',
                             fontSize: '14px',
@@ -152,9 +148,30 @@ function App() {
                 {/* <h1 style={{ marginTop: 0, marginBottom: '20px', color: '#333' }}>
                     {displayName || 'Select a Story'}
                 </h1> */}
-                {isLoading && <div>Loading story...</div>}
-                {!isLoading && CurrentStoryComponent && <CurrentStoryComponent />}
-                {!isLoading && selectedStory && !CurrentStoryComponent && (
+                {isLoading && !iframeContent && <div>Loading story...</div>}
+                {iframeContent && (
+                    <iframe
+                        key={iframeContent} // Force re-render when URL changes
+                        src={iframeContent}
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            border: 'none',
+                            borderRadius: '8px',
+                            display: isLoading ? 'none' : 'block'
+                        }}
+                        title="Story Preview"
+                        onLoad={() => {
+                            console.log('Iframe loaded successfully:', iframeContent);
+                            setIsLoading(false);
+                        }}
+                        onError={(e) => {
+                            console.log('Iframe failed to load:', iframeContent, e);
+                            setIsLoading(false);
+                        }}
+                    />
+                )}
+                {!isLoading && selectedStory && !iframeContent && (
                     <div>Error loading story: {selectedStory}</div>
                 )}
             </div>

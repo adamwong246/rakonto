@@ -1,7 +1,7 @@
 {
   "version": 3,
-  "sources": ["../../../../example/stories/FeedChatWall.stories.js"],
+  "sources": ["../../../../example/stories/FeedChatWall.stories.tsx"],
   "sourcesContent": ["import React from 'react';\nimport { ChatWall } from '../components/IndraV0/ChatWall.js';\n\nexport default function FeedChatWallStory() {\n    return (\n        <div>\n            <ChatWall showInputForm={true} context=\"feed\" scrollDirection=\"down\" />\n        </div>\n    );\n}\n"],
-  "mappings": ";;;;;;;;;;;;AAAA,mBAAkB;AAMN;AAHG,SAAR,oBAAqC;AACxC,SACI,4CAAC,SACG,sDAAC,YAAS,eAAe,MAAM,SAAQ,QAAO,iBAAgB,QAAO,GACzE;AAER;",
+  "mappings": ";;;;;;;;;;;AAMY;AAHG,SAAR,oBAAqC;AACxC,SACI,4CAAC,SACG,sDAAC,YAAS,eAAe,MAAM,SAAQ,QAAO,iBAAgB,QAAO,GACzE;AAER;",
   "names": []
 }

@@ -11,6 +11,8 @@ import { DBProvider, useDB } from "./IndraV0/DBContext.js";
 
 import { BaseColor } from "./IndraV0/style.js"
 
+import "./IndraV0/style.css";
+
 // Inner component that uses the DB context
 function IndraV0Content() {
   const [activeTab, setActiveTab] = useState("profile");

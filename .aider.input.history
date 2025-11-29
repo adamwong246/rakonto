@@ -9734,3 +9734,266 @@
 
 # 2025-11-29 12:01:27.102059
 +/add example/components/IndraV0.tsx 
+
+# 2025-11-29 12:15:02.336038
++/drop 
+
+# 2025-11-29 12:15:07.541370
++/clear 
+
+# 2025-11-29 12:15:47.439550
++/add index.js public/index.html 
+
+# 2025-11-29 12:16:19.115635
++we need reactor to render components into an iframe such stories style does not conflict with reactor's, and vice-versa 
+
+# 2025-11-29 12:17:38.333556
++y
+
+# 2025-11-29 12:18:33.065628
++clicking on a nav item does not load the story
+
+# 2025-11-29 12:19:15.944644
++n
+
+# 2025-11-29 12:19:47.901797
++curl http://localhost:8000/story-iframe.html ---> 404
+
+# 2025-11-29 12:19:50.880252
++y
+
+# 2025-11-29 12:20:45.207444
++n
+
+# 2025-11-29 12:21:21.461473
++StoryComponent: ƒ ButtonStory() {
++  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "20px" }, children: [
++    /* @__PURE__ */ (0, import_jsx_runtim…
++VM23967 react-dom.development.js:13133 Uncaught Error: Objects are not valid as a React child (found: object with keys {$$typeof, type, key, props, _owner, _store}). If you meant to render a collection of children, use an array instead.
+
+# 2025-11-29 12:21:49.787403
++y
+
+# 2025-11-29 12:23:06.632635
++/add public/story-iframe.html story-iframe.html 
+
+# 2025-11-29 12:23:13.678355
++n
+
+# 2025-11-29 12:23:20.363019
++proceed 
+
+# 2025-11-29 12:23:56.084314
++Iframe loaded: /story-iframe.html?story=example%2Fstories%2FProfileChatWall.stories.js
++VM24326 story-iframe.html:14 Story module loaded: Module {Symbol(Symbol.toStringTag): 'Module'}
++VM24326 story-iframe.html:16 StoryComponent: ƒ ProfileChatWallStory() {
++  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChatWall, { showInputForm: true, context: "profile", scrol…
++VM24325 react-dom.development.js:13133 Uncaught Error: Objects are not valid as a React child (found: object with keys {$$typeof, type, key, props, _owner, _store}). If you meant to render a collection of children, use an array instead.
+
+# 2025-11-29 12:25:19.192897
++no change 
+
+# 2025-11-29 12:25:35.790004
++you did not fix the prob lem
+
+# 2025-11-29 12:26:48.620301
++story never loads 
+
+# 2025-11-29 12:27:39.761220
++StoryComponent: ƒ ButtonStory() {
++  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "20px" }, children: [
++    /* @__PURE__ */ (0, import_jsx_runtim…
++VM25852 story-iframe.html:21 StoryComponent type: function
++VM25852 story-iframe.html:29 Rendering as function component
++VM25852 story-iframe.html:36 Story rendered successfully
++VM25846 react-dom.development.js:13133 Uncaught Error: Objects are not valid as a React child (found: object with keys {$$typeof, type, key, props, _owner, _store}). If you meant to render a collection of children, use an array instead.
+
+# 2025-11-29 12:28:57.867367
++StoryComponent: ƒ ButtonStory() {
++  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "20px" }, children: [
++    /* @__PURE__ */ (0, import_jsx_runtim…
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:30 StoryComponent type: function
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:38 Rendering as function component
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:45 Story rendered successfully
++react-dom.development.js:13133 Uncaught Error: Objects are not valid as a React child (found: object with keys {$$typeof, type, key, props, _owner, _store}). If you meant to render a collection of children, use an array instead.
+
+# 2025-11-29 12:30:38.508376
++/add build.js
+
+# 2025-11-29 12:32:15.989942
++do not load bable or react or react-dom from a remote source . The components have already been bundled by esbuild, so you should have everything you need in public
+
+# 2025-11-29 12:32:48.481012
++proceed 
+
+# 2025-11-29 12:35:04.529472
++Iframe loaded successfully: /story-iframe.html?story=example%2Fstories%2FButton.stories.js
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:28 Story module loaded successfully: Module {Symbol(Symbol.toStringTag): 'Module'}
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:30 StoryComponent: ƒ ButtonStory() {
++  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "20px" }, children: [
++    /* @__PURE__ */ (0, import_jsx_runtim…
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:63 Error loading story in iframe: Error: ReactDOM.createRoot not found in the module
++    at story-iframe.html?story=example%2Fstories%2FButton.stories.js:55:35
++(anonymous) @ story-iframe.html?story=example%2Fstories%2FButton.stories.js:63
++Promise.catch
++(anonymous) @ story-iframe.html?story=example%2Fstories%2FButton.stories.js:62Understand this error
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:64 Error stack: Error: ReactDOM.createRoot not found in the module
+
+# 2025-11-29 12:36:21.882637
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:45 Uncaught Error: React or ReactDOM not found in global scope
++    at script.onload (story-iframe.html?story=example%2Fstories%2FButton.stories.js:45:31)
+
+# 2025-11-29 12:37:33.275152
++do not uise a CDN!!!
+
+# 2025-11-29 12:38:10.182034
++they do not need to be expose to the global scope. They are bundled, so you just need to run that in an iframe
+
+# 2025-11-29 12:39:08.381932
++Story script loaded successfully
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:33 StoryModule: {__esModule: true}
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:54 Found React: undefined
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:55 Found ReactDOM: undefined
++index.js:165 Iframe loaded successfully: /story-iframe.html?story=example%2Fstories%2FButton.stories.js
+
+# 2025-11-29 12:40:47.438330
++Story script loaded successfully
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:54 Found React: undefined
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:55 Found ReactDOM: undefined
++story-iframe.html?story=example%2Fstories%2FButton.stories.js:59 StoryComponent: ƒ ButtonStory() {
++    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "20px" }, children: [
++      /* @__PURE__ */ (0, import_jsx_ru…
++index.js:165 Iframe loaded successfully: /story-iframe.html?story=example%2Fstories%2FButton.stories.js
+
+# 2025-11-29 12:41:59.512372
++Iframe loaded successfully: /story-iframe.html?story=example%2Fstories%2FButton.stories.js
++story-iframe.html?st…utton.stories.js:28 Story module loaded successfully: 
++Module {Symbol(Symbol.toStringTag): 'Module'}
++story-iframe.html?st…utton.stories.js:30 StoryComponent: ƒ ButtonStory() {
++  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "20px" }, children: [
++    /* @__PURE__ */ (0, import_jsx_runtim…
++story-iframe.html?st…utton.stories.js:47 Found React: undefined
++story-iframe.html?st…utton.stories.js:48 Found ReactDOM: undefined
++
+
+# 2025-11-29 12:57:59.662177
++Setting selected story: example/stories/Button.stories.tsx
++index.js:53 Iframe URL: /story-iframe.html?story=example%2Fstories%2FButton.stories.tsx
++story-iframe.html?story=example%2Fstories%2FButton.stories.tsx:15 Loading story in iframe: example/stories/Button.stories.tsx
++story-iframe.html?story=example%2Fstories%2FButton.stories.tsx:20 Full import path in iframe: /dist/example/stories/Button.stories.tsx
++quick-record-script.js:137 Fetch finished loading: POST "https://firebaseremoteconfig.googleapis.com/v1/projects/castify-storage/namespaces/firebase:fetch?key=AIzaSyDraAcnfh7TewzYJS9yt8Togm6_VzB_RJE".
++fetch @ quick-record-script.js:137
++await in fetch
++attemptFetch @ quick-record-script.js:137
++await in attemptFetch
++fetch @ quick-record-script.js:137
++await in fetch
++fetch @ quick-record-script.js:137
++await in fetch
++(anonymous) @ quick-record-script.js:137
++Yd @ quick-record-script.js:137
++(anonymous) @ quick-record-script.js:627
++(anonymous) @ quick-record-script.js:627
++(anonymous) @ quick-record-script.js:627
++nl @ quick-record-script.js:11
++_c @ quick-record-script.js:11
++(anonymous) @ quick-record-script.js:11
++Tc @ quick-record-script.js:11
++lc @ quick-record-script.js:11
++Wo @ quick-record-script.js:11
++(anonymous) @ quick-record-script.js:11
++inpage.js:1 Uncaught (in promise) i: Failed to connect to MetaMask
++    at Object.connect (inpage.js:1:58695)
++    at async s (inpage.js:1:56490)Caused by: Error: MetaMask extension not found
++    at inpage.js:1:53800
++connect @ inpage.js:1
++await in connect
++s @ inpage.js:1
++e @ inpage.js:1
++(anonymous) @ inpage.js:1
++(anonymous) @ inpage.js:1
++2.../../shared/modules/provider-injection @ inpage.js:1
++i @ inpage.js:1
++e @ inpage.js:1
++(anonymous) @ inpage.js:1Understand this error
++zilpay.js:10 zilPay injected: {utils: {…}, crypto: {…}, provider: te, wallet: ne, blockchain: Jt, …}
++story-iframe.html?story=example%2Fstories%2FButton.stories.tsx:26  GET http://localhost:8000/dist/example/stories/Button.stories.tsx?t=1764449847096 net::ERR_ABORTED 404 (Not Found)
++(anonymous) @ story-iframe.html?story=example%2Fstories%2FButton.stories.tsx:26Understand this error
++index.js:165 Iframe loaded successfully: /story-iframe.html?story=example%2Fstories%2FButton.stories.tsx
+
+# 2025-11-29 12:58:39.179183
++Setting selected story: example/stories/Button.stories.tsx
++index.js:53 Iframe URL: /story-iframe.html?story=example%2Fstories%2FButton.stories.tsx
++story-iframe.html?story=example%2Fstories%2FButton.stories.tsx:15 Loading story in iframe: example/stories/Button.stories.tsx
++story-iframe.html?story=example%2Fstories%2FButton.stories.tsx:20 Full import path in iframe: /dist/example/stories/Button.stories.tsx
++index.js:165 Iframe loaded successfully: /story-iframe.html?story=example%2Fstories%2FButton.stories.tsx
++Button.stories.tsx:1  Failed to load resource: the server responded with a status of 404 (Not Found)Understand this error
++story-iframe.html?story=example%2Fstories%2FButton.stories.tsx:67 Error loading story module: TypeError: Failed to fetch dynamically imported module: http://localhost:8000/dist/example/stories/Button.stories.tsx?t=1764449908259
++(anonymous) @ story-iframe.html?story=example%2Fstories%2FButton.stories.tsx:67Understand this error
+
+# 2025-11-29 12:58:42.630273
++y
+
+# 2025-11-29 13:04:37.326668
++/add example/components/Button.js example/stories/Button.stories.js
+
+# 2025-11-29 13:04:40.196852
++n
+
+# 2025-11-29 13:04:59.803844
++/add example/stories/Button.stories.js
+
+# 2025-11-29 13:05:14.079809
++/add example/stories/Button.stories.tsx 
+
+# 2025-11-29 13:28:54.699858
++/add build.ts 
+
+# 2025-11-29 13:30:27.786612
++✘ [ERROR] Could not resolve "./style.css"
++
++    example/components/IndraV0.tsx:14:7:
++      14 │ import "./style.css";
+
+# 2025-11-29 13:30:52.542903
++leave that code alone and fix the css problem
+
+# 2025-11-29 13:31:45.283154
++i want want to actually bundle the CSS
+
+# 2025-11-29 13:32:50.551801
++ttry again
+
+# 2025-11-29 13:33:12.741230
++WTF. is my comment not clear ?
+
+# 2025-11-29 13:34:57.824329
++/read .storyboardrc.js
+
+# 2025-11-29 13:35:56.789532
++/drop example/components/Button.js example/stories/Button.stories.tsx 
+
+# 2025-11-29 13:36:10.841593
++/add example/components/IndraV0.tsx example/stories/IndraV0.stories.js 
+
+# 2025-11-29 13:36:13.810481
++n
+
+# 2025-11-29 13:36:33.256930
++/add example/components/IndraV0.tsx example/stories/IndraV0.stories.tsx
+
+# 2025-11-29 13:36:44.537842
++story-iframe.html needs to load the css for each module as stylesheet. in this case, public/dist/example/stories/IndraV0.sto
++. ries.css
+
+# 2025-11-29 13:37:45.868436
++proveed 
+
+# 2025-11-29 13:38:26.150157
++HOLY FUCK. STOP TRYIN GTO CHANGE ME WORK GODMANIT
+
+# 2025-11-29 13:39:27.690457
++./clear 
+
+# 2025-11-29 13:39:29.590725
++/clear 

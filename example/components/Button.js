@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function Button({ primary, size, children, ...props }) {
     const baseStyle = {
         fontFamily: 'Nunito Sans, Helvetica Neue, Helvetica, Arial, sans-serif',
