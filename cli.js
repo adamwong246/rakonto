@@ -100,7 +100,10 @@ async function run() {
             },
             nodePaths: [path.join(process.cwd(), 'node_modules')],
             // Don't bundle dependencies from the consuming project
-            external: Object.keys(JSON.parse(await fs.readFile(path.join(process.cwd(), 'package.json'), 'utf8')).dependencies || {})
+            external: [
+                ...Object.keys(JSON.parse(await fs.readFile(path.join(process.cwd(), 'package.json'), 'utf8')).dependencies || {}),
+                ...Object.keys(JSON.parse(await fs.readFile(path.join(process.cwd(), 'package.json'), 'utf8')).devDependencies || {})
+            ]
         };
 
         if (isDev) {

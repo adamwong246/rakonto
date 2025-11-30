@@ -10238,3 +10238,71 @@
 +
 +ReferenceError: require is not defined in ES module scope, you can use import instead
 +    at <anonymous> (/Users/adam/Code/rakonto/build.ts:52:22)
+
+# 2025-11-30 09:15:09.697979
++d
+
+# 2025-11-30 09:16:55.226220
++✘ [ERROR] Could not resolve "react-redux"
++
++    dev/IndraV0.tsx:3:25:
++      3 │ import { Provider } from 'react-redux';
++        ╵                          ~~~~~~~~~~~~~
++
++  You can mark the path "react-redux" as external to exclude it from the bundle, which
++  will remove this error and leave the unresolved path in the bundle.
++
++✘ [ERROR] Could not resolve "react-redux"
++
++    dev/IndraV0/DBContext.tsx:2:28:
++      2 │ import { useSelector } from 'react-redux';
++        ╵                             ~~~~~~~~~~~~~
++
++  You can mark the path "react-redux" as external to exclude it from the bundle, which
++  will remove this error and leave the unresolved path in the bundle.
++
++✘ [ERROR] Could not resolve "reselect"
++
++    dev/IndraV0/selectors.ts:1:31:
++      1 │ import { createSelector } from 'reselect';
++        ╵                                ~~~~~~~~~~
++
++  You can mark the path "reselect" as external to exclude it from the bundle, which will
++  remove this error and leave the unresolved path in the bundle.
++
++✘ [ERROR] Could not resolve "react-redux"
++
++    dev/IndraV0/usePosts.js:3:28:
++      3 │ import { useSelector } from 'react-redux';
++        ╵                             ~~~~~~~~~~~~~
++
++  You can mark the path "react-redux" as external to exclude it from the bundle, which
++  will remove this error and leave the unresolved path in the bundle.
++
++Dev server running at http://localhost:8000
++^C
++
++   !   cat .storyboardrc.js                                     ~/Code/indra rakonto -!
++export default {
++    stories: [
++        'dev/IndraV0.stories.tsx',
++        // 'dev/IndraV1.stories.tsx',
++    ]
++};
++
++   ?   cat dev/IndraV0.stories.tsx                              ~/Code/indra rakonto -!
++import { IndraV0 } from './IndraV0';
++import { BackendContext, backend } from './IndraV0/Backend.js';
++
++import Story from "rakonto/story";
++
++Story(
++  <BackendContext.Provider value={backend}>
++            <div>
++                <IndraV0 />
++            </div>
++        </BackendContext.Provider>
++);
+
+# 2025-11-30 09:16:57.448715
++d
