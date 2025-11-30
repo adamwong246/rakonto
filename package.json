@@ -2,7 +2,7 @@
   "name": "rakonto",
   "version": "0.0.1",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "adamwong246@gmail.com",
   "license": "MIT",
   "dependencies": {
@@ -14,13 +14,21 @@
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
+    "react-router-dom": "^7.9.6",
     "redux": "^5.0.1",
     "reselect": "^5.1.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "dev": "node --import=tsx build.ts .storyboardrc.js --dev",
-    "build": "node build.ts .storyboardrc.js"
-  }
+    "dev": "tsx build.ts .storyboardrc.js --dev",
+    "build": "tsx build.ts .storyboardrc.js",
+    "prepublishOnly": "npm run build"
+  },
+  "bin": {
+    "rakonto": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ]
 }

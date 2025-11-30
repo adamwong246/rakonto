@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Story</title>
-    <!-- <link href="/dist/example/stories/IndraV0.stories.css" rel="stylesheet"> -->
   </head>
   <body>
     <div id="story-root"></div>
     <script type="module">
+      // import React from 'react';
+      // import ReactDOM from 'react-dom/client';
+
       // Get the story path from the URL
       const urlParams = new URLSearchParams(window.location.search);
       const storyPath = urlParams.get("story");
-      console.log("Loading story in iframe:", storyPath);
 
       if (storyPath) {
         const cssStoryPath = storyPath.replace(/\.(tsx|jsx|ts|js)$/, ".css");
@@ -24,27 +24,33 @@
         link.rel = "stylesheet";
         link.href = cssPath;
         document.head.appendChild(link);
-
-        // Convert .tsx to .js since that's what esbuild outputs
+        // The story is built to /dist/ with the same relative path
+        // esbuild will have created a file with a .js extension
         const jsStoryPath = storyPath.replace(/\.(tsx|jsx|ts|js)$/, ".js");
-        const fullPath = `/dist/${jsStoryPath}`;
-        console.log("Full import path in iframe:", fullPath);
 
+        const fullPath = `/dist/${jsStoryPath}`;
         // Add a timestamp to bust cache
         const timestamp = Date.now();
         const importPath = `${fullPath}?t=${timestamp}`;
 
-        import(importPath).catch((error) => {
-          console.error("Error loading story module:", error);
-          document.getElementById("story-root").innerHTML =
-            '<div style="padding: 20px; color: red;">Error loading story: ' +
-            error.message +
-            "</div>";
-        });
+        // Import and render the story
+        import(importPath)
+          .then((module) => {
+            // const root = ReactDOM.createRoot(document.getElementById("root"));
+            // const StoryComponent = module.default;
+            // root.render(React.createElement(StoryComponent));
+          })
+          .catch((error) => {
+            console.error("Error loading story:", error);
+            document.getElementById("root").innerHTML = `
+                    <div style="padding: 20px; color: red;">
+                        Error loading story: ${storyPath}<br>
+                        ${error.message}
+                    </div>
+                `;
+          });
       } else {
-        console.log("No story path provided in iframe");
-        document.getElementById("story-root").innerHTML =
-          '<div style="padding: 20px;">No story selected</div>';
+        document.getElementById("root").innerHTML = "No story specified";
       }
     </script>
   </body>

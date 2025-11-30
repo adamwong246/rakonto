@@ -7026,7 +7026,7 @@ var backend = new FakeBackend();
 var BackendContext = import_react57.default.createContext();
 
 // example/components/IndraV0/style.ts
-var BaseColor = "grey";
+var BaseColor = "#4A154B";
 
 // example/components/IndraV0/HorizontalNav.tsx
 var import_jsx_runtime63 = __toESM(require_jsx_runtime(), 1);

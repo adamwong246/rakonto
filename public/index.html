@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reactor</title>
-    
+    <title>Rakonto Storybook</title>
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="/dist/index.js"></script>
+    <script type="module">
+        import { initRakonto } from '/dist/index.js';
+        // Import the config from the current directory
+        // Note: This assumes .storyboardrc.js is at the root of the served directory
+        const config = await import('/.storyboardrc.js').then(mod => mod.default);
+        initRakonto(config);
+    </script>
 </body>
 </html>

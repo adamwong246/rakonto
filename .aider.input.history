@@ -10000,3 +10000,95 @@
 
 # 2025-11-29 13:40:22.183133
 +/drop example/
+
+# 2025-11-29 15:32:54.320246
++n
+
+# 2025-11-29 15:33:06.103963
++/add build.ts package.json index.js 
+
+# 2025-11-29 15:34:37.007521
++/add README.md
+
+# 2025-11-29 15:34:47.071772
++we need to update this project so that it can be invoked as a utility from another pro
++. ject which has imports rakonto
+
+# 2025-11-29 15:50:33.362892
++y
+
+# 2025-11-29 15:55:21.634165
++n
+
+# 2025-11-29 15:55:57.653466
++   ?   npx rakonto                                               ~/Code/indra rakonto !
++npm error could not determine executable to run
+
+# 2025-11-29 16:00:24.972949
++y
+
+# 2025-11-29 16:02:54.212584
++n
+
+# 2025-11-29 16:03:18.256903
++✘ [ERROR] Expected "=>" but found ";"
++
++    frontend/src/App.tsx:48:3:
++      48 │   );
++         │    ^
++         ╵    =>           !   chmod +x dist/cli.js                                      ~/Code/indra rakonto !
++chmod: dist/cli.js:
+
+# 2025-11-29 16:04:40.851172
++y
+
+# 2025-11-29 16:06:17.793213
++✘ [ERROR] Expected "=>" but found ";"
++
++    frontend/src/App.tsx:48:3:
++      48 │   );
++         │    ^
++         ╵    =>
++
++1 error
+
+# 2025-11-29 16:08:45.572526
++   ?   yarn run build                                            ~/Code/rakonto main !+
++yarn run v1.22.19
++warning ../../package.json: No license field
++$ tsc && node build.ts .storyboardrc.js
++node:internal/modules/esm/get_format:189
++  throw new ERR_UNKNOWN_FILE_EXTENSION(ext, filepath);
++        ^
++
++TypeError [ERR_UNKN
+
+# 2025-11-29 16:09:49.971750
++xn
+
+# 2025-11-29 16:09:51.521804
++n
+
+# 2025-11-29 16:10:11.992552
++   ?   yarn run build                                           ~/Code/rakonto main -!+
++yarn run v1.22.19
++warning ../../package.json: No license field
++$ node build.ts .storyboardrc.js
++node:internal/modules/esm/get_format:189
++  throw new ERR_UNKNOWN_FILE_EXTENSION(ext, filepath);
++        ^
++
++TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".ts" for /Users/adam/Code/rakonto/build.ts
+
+# 2025-11-29 16:11:04.231591
++n
+
+# 2025-11-29 16:16:27.330562
++proceed 
+
+# 2025-11-29 16:17:08.432993
++" 2 The story-iframe.html is not properly rendering the stories
++ 3 We need to ensure React and ReactDOM are imported in the iframe" ignore these concerns, these are correct so don't fuck with it
+
+# 2025-11-29 16:17:23.018668
++n

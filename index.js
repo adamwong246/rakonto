@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-import config from './.storyboardrc.js';
 
-function App() {
-    const [selectedStory, setSelectedStory] = useState(null);
-    const [storiesTree, setStoriesTree] = useState({});
-    const [iframeContent, setIframeContent] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+export function initRakonto(config) {
+    const App = () => {
+        const [selectedStory, setSelectedStory] = useState(null);
+        const [storiesTree, setStoriesTree] = useState({});
+        const [iframeContent, setIframeContent] = useState('');
+        const [isLoading, setIsLoading] = useState(false);
     
     // Build the tree structure from the flat list of stories
     useEffect(() => {
@@ -176,9 +176,10 @@ function App() {
                 )}
             </div>
         </div>
-    );
-}
+        );
+    };
 
-const container = document.getElementById('root');
-const root = createRoot(container);
-root.render(<App />);
+    const container = document.getElementById('root');
+    const root = createRoot(container);
+    root.render(<App />);
+}
