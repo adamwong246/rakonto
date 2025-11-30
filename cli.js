@@ -98,7 +98,9 @@ async function run() {
             define: {
                 'process.env.NODE_ENV': isDev ? '"development"' : '"production"'
             },
-            nodePaths: [path.join(process.cwd(), 'node_modules')]
+            nodePaths: [path.join(process.cwd(), 'node_modules')],
+            // Don't bundle dependencies from the consuming project
+            external: Object.keys(JSON.parse(await fs.readFile(path.join(process.cwd(), 'package.json'), 'utf8')).dependencies || {})
         };
 
         if (isDev) {

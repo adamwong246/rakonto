@@ -10217,3 +10217,24 @@
 
 # 2025-11-30 09:04:51.083058
 +Stop fucking with the storyboardrc file. It has zero relevance on the problem at hand. Put a comment in the rc.js file to reemind yourself not to touch it again
+
+# 2025-11-30 09:13:18.486681
++I have removed those packages from rakonto, because they are defined in indra. The build stories need to use the deps from their home repo, not from rakonto
+
+# 2025-11-30 09:14:51.307372
++d
+
+# 2025-11-30 09:14:51.868606
++$ tsx build.ts .storyboardrc.js
++[
++  '/Users/adam/.nvm/versions/node/v20.19.4/bin/node',
++  '/Users/adam/Code/rakonto/build.ts',
++  '.storyboardrc.js'
++]
++/Users/adam/Code/rakonto/build.ts:52
++    external: Object.keys(require(path.join(process.cwd(), 'package.json')).dependencies || {})
++                     ^
++
++
++ReferenceError: require is not defined in ES module scope, you can use import instead
++    at <anonymous> (/Users/adam/Code/rakonto/build.ts:52:22)
